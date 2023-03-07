@@ -1,0 +1,12 @@
+{
+  "SignIn": "ログイン",
+  "Email": "メールアドレス",
+  "Password": "パスワード",
+  "SignOut": "ログアウト",
+  "Reload": "再読込み",
+  "Edit": "編集する",
+  "ServerError": "サーバーでエラーが発生しました。",
+  "NetworkError": "ネットワーク接続に失敗しました。",
+  "LoginError": "メールアドレスまたはパスワードが誤っています。",
+  "UnknownError": "原因不明のエラーが発生しました。"
+}
