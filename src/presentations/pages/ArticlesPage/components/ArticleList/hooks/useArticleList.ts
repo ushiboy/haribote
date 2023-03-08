@@ -1,12 +1,29 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
+import { ApplicationException } from "@/domains/errors";
 import { Article } from "@/domains/models";
+import { useError } from "@/presentations/hooks/shared";
 
-export const useArticleList = (articles: Article[]) => {
+export const useArticleList = (
+  articles: Article[],
+  error: ApplicationException | null
+) => {
+  const { toMessageFromError } = useError();
   const [isEditing, setEditing] = useState(false);
   const [selected, setSelected] = useState<Set<Article>>(new Set());
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [errorMessage, setErrorMessage] = useState(
+    error ? toMessageFromError(error) : ""
+  );
+
+  useEffect(() => {
+    if (error) {
+      setErrorMessage(toMessageFromError(error));
+    } else {
+      setErrorMessage("");
+    }
+  }, [error, setErrorMessage, toMessageFromError]);
 
   const changePage = useCallback(
     (page: number) => {
@@ -48,6 +65,10 @@ export const useArticleList = (articles: Article[]) => {
     setEditing(false);
   }, [setEditing]);
 
+  const clearErrorMessage = useCallback(() => {
+    setErrorMessage("");
+  }, [setErrorMessage]);
+
   const from = page * rowsPerPage;
   const to = page * rowsPerPage + rowsPerPage;
 
@@ -56,6 +77,7 @@ export const useArticleList = (articles: Article[]) => {
     selected,
     page,
     rowsPerPage,
+    errorMessage,
     rows: articles.slice(from, to),
     toggleSelect,
     changePage,
@@ -63,5 +85,6 @@ export const useArticleList = (articles: Article[]) => {
     resetPage,
     startEdit,
     endEdit,
+    clearErrorMessage,
   };
 };

@@ -6,6 +6,7 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { Container } from "@mui/system";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import { ArticleEditDialog } from "../ArticleEditDialog";
 
@@ -13,19 +14,24 @@ import { ArticleRow } from "./ArticleRow";
 import { useArticleList } from "./hooks";
 import * as S from "./style";
 
+import { ApplicationException } from "@/domains/errors";
 import { Article } from "@/domains/models";
 import {
   EditButton,
   ReloadButton,
 } from "@/presentations/sharedComponents/buttons";
+import { ErrorToast } from "@/presentations/sharedComponents/toasts";
 import { LoadingMask } from "@/presentations/sharedComponents/utilities";
 
 export const ArticleList: React.FC<{
   articles: Article[];
   isLoading: boolean;
+  error: ApplicationException | null;
   onReloadClick: () => void;
-}> = ({ articles, isLoading, onReloadClick }) => {
-  const { page, rowsPerPage, selected, ...handle } = useArticleList(articles);
+}> = ({ articles, error, isLoading, onReloadClick }) => {
+  const { t } = useTranslation();
+  const { page, rowsPerPage, selected, errorMessage, ...handle } =
+    useArticleList(articles, error);
 
   return (
     <Container>
@@ -47,7 +53,7 @@ export const ArticleList: React.FC<{
             <TableHead>
               <TableRow>
                 <TableCell>ID</TableCell>
-                <TableCell>TITLE</TableCell>
+                <TableCell>{t("ArticleTitle")}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -79,6 +85,13 @@ export const ArticleList: React.FC<{
         <ArticleEditDialog
           article={Array.from(selected)[0]}
           onClose={() => handle.endEdit()}
+        />
+      )}
+      {errorMessage && (
+        <ErrorToast
+          show
+          message={errorMessage}
+          onClose={handle.clearErrorMessage}
         />
       )}
     </Container>

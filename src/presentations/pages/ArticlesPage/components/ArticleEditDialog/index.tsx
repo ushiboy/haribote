@@ -4,6 +4,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import { useArticleEdit } from "./hooks";
 import * as S from "./style";
@@ -14,14 +15,15 @@ export const ArticleEditDialog: React.FC<{
   article: Article;
   onClose: () => void;
 }> = ({ article, onClose }) => {
+  const { t } = useTranslation();
   const { title, setTitle } = useArticleEdit(article);
   return (
     <Dialog open onClose={onClose}>
-      <DialogTitle>記事編集</DialogTitle>
+      <DialogTitle>{t("EditArticle")}</DialogTitle>
       <S.DialogContent>
         <TextField
           autoFocus
-          label="Title"
+          label={t("ArticleTitle")}
           type="text"
           fullWidth
           variant="standard"
@@ -30,8 +32,8 @@ export const ArticleEditDialog: React.FC<{
         />
       </S.DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>保存</Button>
-        <Button onClick={onClose}>キャンセル</Button>
+        <Button onClick={onClose}>{t("Save")}</Button>
+        <Button onClick={onClose}>{t("Cancel")}</Button>
       </DialogActions>
     </Dialog>
   );

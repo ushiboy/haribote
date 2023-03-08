@@ -9,6 +9,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import * as S from "./style";
 
@@ -16,6 +17,7 @@ import { useAppState } from "@/presentations/contexts";
 import { Link } from "@/presentations/sharedComponents/utilities";
 
 export const SideMenu: React.FC = () => {
+  const { t } = useTranslation();
   const { isShowSideMenu } = useAppState();
   return (
     <S.Drawer variant="permanent" open={isShowSideMenu}>
@@ -27,7 +29,7 @@ export const SideMenu: React.FC = () => {
             <ListItemIcon>
               <DescriptionIcon />
             </ListItemIcon>
-            <ListItemText primary="Articles" />
+            <ListItemText primary={t("Article")} />
           </ListItemButton>
         </Link>
         <Link to="about">
@@ -35,7 +37,7 @@ export const SideMenu: React.FC = () => {
             <ListItemIcon>
               <InfoIcon />
             </ListItemIcon>
-            <ListItemText primary="About" />
+            <ListItemText primary={t("About")} />
           </ListItemButton>
         </Link>
       </List>
