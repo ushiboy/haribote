@@ -2,15 +2,19 @@ import { renderHook } from "@testing-library/react";
 
 import { useError } from "../useError";
 
-import "@/i18n/config";
 import {
   ApplicationException,
   NetworkException,
   WebApiException,
 } from "@/domains/errors";
+import { i18n } from "@/i18n/config";
 
 describe("useError", () => {
   const hooks = () => renderHook(() => useError());
+
+  beforeEach(() => {
+    i18n.changeLanguage("ja");
+  });
 
   describe("WebApiExceptionの場合", () => {
     describe("500ステータスの場合", () => {
