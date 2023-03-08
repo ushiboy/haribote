@@ -2,7 +2,7 @@ import React, { createContext, useCallback, useContext, useState } from "react";
 import { useNavigate } from "react-router";
 
 import { CurrentUser } from "@/domains/models";
-import { useCurrentUser, useLogout } from "@/presentations/hooks/queries";
+import { useGetCurrentUser, useLogout } from "@/presentations/hooks/queries";
 
 type AppState = {
   isLoading: boolean;
@@ -22,7 +22,7 @@ export const AppStateContextProvider: React.FC<{
   const [currenUser, setCurrentUser] = useState<CurrentUser | null>(null);
   const [isShowSideMenu, setShowSideMenu] = useState(true);
 
-  const { refetch, isLoading } = useCurrentUser({
+  const { refetch, isLoading } = useGetCurrentUser({
     staleTime: Infinity,
     retry: false,
     onSuccess(data) {

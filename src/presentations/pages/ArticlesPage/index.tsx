@@ -2,10 +2,10 @@ import React from "react";
 
 import { ArticleList } from "./components/ArticleList";
 
-import { useArticles } from "@/presentations/hooks/queries/article";
+import { useGetArticles } from "@/presentations/hooks/queries/article";
 
 export const ArticlesPage: React.FC = () => {
-  const { data, error, refetch, isFetching } = useArticles();
+  const { data, error, refetch, isFetching } = useGetArticles();
   return (
     <ArticleList
       articles={data || []}

@@ -1,3 +1,3 @@
-export * from "./useCurrentUser";
+export * from "./useGetCurrentUser";
 export * from "./useLogin";
 export * from "./useLogout";
