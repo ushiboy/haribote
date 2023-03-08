@@ -8,7 +8,10 @@ export type LoginParam = {
   password: string;
 };
 
-export const login = async ({ email, password }: LoginParam) => {
+export const login = async ({
+  email,
+  password,
+}: LoginParam): Promise<boolean> => {
   const res = await axios.post(LOGIN_API, {
     email,
     password,
