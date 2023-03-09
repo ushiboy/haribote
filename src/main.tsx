@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 import "@/i18n/config";
-import { App } from "./App";
+import { App } from "./presentations/App";
 
 if (process.env.NODE_ENV === "development") {
   const { worker } = await import("./mocks/browser");
