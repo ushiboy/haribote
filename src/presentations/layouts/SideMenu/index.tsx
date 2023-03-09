@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router";
 
 import * as S from "./style";
 
@@ -17,6 +18,7 @@ import { useAppState } from "@/presentations/contexts";
 import { Link } from "@/presentations/sharedComponents/utilities";
 
 export const SideMenu: React.FC = () => {
+  const { pathname } = useLocation();
   const { t } = useTranslation();
   const { isShowSideMenu } = useAppState();
   return (
@@ -25,7 +27,7 @@ export const SideMenu: React.FC = () => {
       <Divider />
       <List component="nav">
         <Link to="articles">
-          <ListItemButton>
+          <ListItemButton selected={pathname === "/articles"}>
             <ListItemIcon>
               <DescriptionIcon />
             </ListItemIcon>
@@ -33,7 +35,7 @@ export const SideMenu: React.FC = () => {
           </ListItemButton>
         </Link>
         <Link to="about">
-          <ListItemButton>
+          <ListItemButton selected={pathname === "/about"}>
             <ListItemIcon>
               <InfoIcon />
             </ListItemIcon>
