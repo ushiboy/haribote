@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 import { ArticleEditDialog } from "../ArticleEditDialog";
 
 import { ArticleRow } from "./ArticleRow";
-import { useArticleList } from "./hooks";
+import { useArticles } from "./hooks";
 import * as S from "./style";
 
 import { ApplicationException } from "@/domains/errors";
@@ -30,8 +30,10 @@ export const ArticleList: React.FC<{
   onReloadClick: () => void;
 }> = ({ articles, error, isLoading, onReloadClick }) => {
   const { t } = useTranslation();
-  const { page, rowsPerPage, selected, errorMessage, ...handle } =
-    useArticleList(articles, error);
+  const { page, rowsPerPage, selected, errorMessage, ...handle } = useArticles(
+    articles,
+    error
+  );
 
   return (
     <Container>
@@ -78,6 +80,9 @@ export const ArticleList: React.FC<{
           onRowsPerPageChange={(e) =>
             handle.changeRowsPerPage(Number(e.target.value))
           }
+          SelectProps={{ name: "perPage" }}
+          backIconButtonProps={{ name: "back" }}
+          nextIconButtonProps={{ name: "next" }}
         />
       </S.TableWrap>
       <LoadingMask show={isLoading} />

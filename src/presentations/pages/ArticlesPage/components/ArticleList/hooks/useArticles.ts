@@ -4,7 +4,7 @@ import { ApplicationException } from "@/domains/errors";
 import { Article } from "@/domains/models";
 import { useError } from "@/presentations/hooks/shared";
 
-export const useArticleList = (
+export const useArticles = (
   articles: Article[],
   error: ApplicationException | null
 ) => {
