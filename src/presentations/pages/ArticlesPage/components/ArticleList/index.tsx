@@ -14,26 +14,20 @@ import { ArticleRow } from "./ArticleRow";
 import { useArticles } from "./hooks";
 import * as S from "./style";
 
-import { ApplicationException } from "@/domains/errors";
 import { Article } from "@/domains/models";
 import {
   EditButton,
   ReloadButton,
 } from "@/presentations/sharedComponents/buttons";
-import { ErrorToast } from "@/presentations/sharedComponents/toasts";
 import { LoadingMask } from "@/presentations/sharedComponents/utilities";
 
 export const ArticleList: React.FC<{
   articles: Article[];
   isLoading: boolean;
-  error: ApplicationException | null;
   onReloadClick: () => void;
-}> = ({ articles, error, isLoading, onReloadClick }) => {
+}> = ({ articles, isLoading, onReloadClick }) => {
   const { t } = useTranslation();
-  const { page, rowsPerPage, selected, errorMessage, ...handle } = useArticles(
-    articles,
-    error
-  );
+  const { page, rowsPerPage, selected, ...handle } = useArticles(articles);
 
   return (
     <Container>
@@ -90,13 +84,6 @@ export const ArticleList: React.FC<{
         <ArticleEditDialog
           article={Array.from(selected)[0]}
           onClose={() => handle.endEdit()}
-        />
-      )}
-      {errorMessage && (
-        <ErrorToast
-          show
-          message={errorMessage}
-          onClose={handle.clearErrorMessage}
         />
       )}
     </Container>

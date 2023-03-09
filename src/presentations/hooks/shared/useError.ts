@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -9,6 +9,7 @@ import {
 
 export const useError = () => {
   const { t } = useTranslation();
+  const [error, setError] = useState<ApplicationException | null>(null);
   const toMessageFromError = useCallback(
     (error: ApplicationException): string => {
       if (error instanceof WebApiException) {
@@ -25,7 +26,12 @@ export const useError = () => {
     [t]
   );
 
+  const clearError = useCallback(() => setError(null), [setError]);
+
   return {
+    error,
+    setError,
+    clearError,
     toMessageFromError,
   };
 };

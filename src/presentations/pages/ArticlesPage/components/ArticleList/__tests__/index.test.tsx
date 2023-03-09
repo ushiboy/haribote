@@ -16,7 +16,6 @@ describe("ArticleList", () => {
       <ArticleList
         articles={articles}
         isLoading={false}
-        error={null}
         onReloadClick={onReloadClick}
       />
     );
