@@ -19,7 +19,7 @@ export const handlers = [
     if (randomFail(5)) {
       return res(ctx.status(500));
     }
-    if (email !== "test@example.com" || password !== "password") {
+    if (email !== "test@example.com" || password !== "hoge123!") {
       return res(ctx.status(401));
     }
     return res(
