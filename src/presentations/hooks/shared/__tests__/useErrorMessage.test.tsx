@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
 
-import { useError } from "../useError";
+import { useErrorMessage } from "../useErrorMessage";
 
 import {
   ApplicationException,
@@ -9,8 +9,8 @@ import {
 } from "@/domains/errors";
 import { i18n } from "@/i18n/config";
 
-describe("useError", () => {
-  const hooks = () => renderHook(() => useError());
+describe("useErrorMessage", () => {
+  const hooks = () => renderHook(() => useErrorMessage());
 
   beforeEach(() => {
     i18n.changeLanguage("ja");

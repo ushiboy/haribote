@@ -2,9 +2,9 @@ import React from "react";
 
 import { ArticleList } from "./components/ArticleList";
 
+import { AppErrorToast } from "@/presentations/domainComponents";
 import { useGetArticles } from "@/presentations/hooks/queries/article";
 import { useError } from "@/presentations/hooks/shared";
-import { ErrorToast } from "@/presentations/sharedComponents/toasts";
 
 export const ArticlesPage: React.FC = () => {
   const { error, ...errorHandle } = useError();
@@ -20,13 +20,7 @@ export const ArticlesPage: React.FC = () => {
         onReloadClick={refetch}
         isLoading={isFetching}
       />
-      {error && (
-        <ErrorToast
-          show
-          message={errorHandle.toMessageFromError(error)}
-          onClose={errorHandle.clearError}
-        />
-      )}
+      <AppErrorToast error={error} onClose={errorHandle.clearError} />
     </>
   );
 };

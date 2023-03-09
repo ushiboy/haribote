@@ -4,13 +4,13 @@ import { useTranslation } from "react-i18next";
 import { ApplicationException, WebApiException } from "@/domains/errors";
 import { useAppState } from "@/presentations/contexts";
 import { useLogin } from "@/presentations/hooks/queries";
-import { useError } from "@/presentations/hooks/shared";
+import { useErrorMessage } from "@/presentations/hooks/shared";
 
 export const useLoginPage = () => {
   const { t } = useTranslation();
   const appStateHandle = useAppState();
   const loginHandle = useLogin();
-  const errorHandle = useError();
+  const errorHandle = useErrorMessage();
 
   const login = useCallback(
     (form: FormData) => {
