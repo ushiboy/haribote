@@ -3,6 +3,9 @@ import { Button } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
+/**
+ * 再読込みボタン
+ */
 export const ReloadButton: React.FC<{ onClick: () => void }> = ({
   onClick,
 }) => {

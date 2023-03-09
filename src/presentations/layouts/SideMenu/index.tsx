@@ -17,6 +17,9 @@ import * as S from "./style";
 import { useAppState } from "@/presentations/contexts";
 import { Link } from "@/presentations/sharedComponents/utilities";
 
+/**
+ * サイドメニュー
+ */
 export const SideMenu: React.FC = () => {
   const { pathname } = useLocation();
   const { t } = useTranslation();

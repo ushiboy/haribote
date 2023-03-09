@@ -7,6 +7,9 @@ import {
   WebApiException,
 } from "@/domains/errors";
 
+/**
+ * エラーメッセージ変換
+ */
 export const useErrorMessage = () => {
   const { t } = useTranslation();
   const toMessageFromError = useCallback(

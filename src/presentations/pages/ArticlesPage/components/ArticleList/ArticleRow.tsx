@@ -4,6 +4,9 @@ import React from "react";
 
 import { Article } from "@/domains/models";
 
+/**
+ * 記事一覧行
+ */
 export const ArticleRow: React.FC<{
   row: Article;
   selected?: boolean;

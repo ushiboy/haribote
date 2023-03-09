@@ -6,6 +6,9 @@ import { AppErrorToast } from "@/presentations/domainComponents";
 import { useGetArticles } from "@/presentations/hooks/queries/article";
 import { useError } from "@/presentations/hooks/shared";
 
+/**
+ * 記事一覧ページ
+ */
 export const ArticlesPage: React.FC = () => {
   const { error, ...errorHandle } = useError();
   const { data, refetch, isFetching } = useGetArticles({

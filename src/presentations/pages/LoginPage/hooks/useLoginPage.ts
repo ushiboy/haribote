@@ -6,6 +6,9 @@ import { useAppState } from "@/presentations/contexts";
 import { useLogin } from "@/presentations/hooks/queries";
 import { useErrorMessage } from "@/presentations/hooks/shared";
 
+/**
+ * ログインページフック
+ */
 export const useLoginPage = () => {
   const { t } = useTranslation();
   const appStateHandle = useAppState();

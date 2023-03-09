@@ -14,6 +14,9 @@ import {
   SaveButton,
 } from "@/presentations/sharedComponents/buttons";
 
+/**
+ * 記事編集ダイアログ
+ */
 export const ArticleEditDialog: React.FC<{
   article: Article;
   onClose: () => void;

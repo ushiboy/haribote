@@ -5,6 +5,9 @@ import { AboutPage, ArticlesPage, NotFoundPage } from "../pages";
 
 import { MainLayout } from "@/presentations/layouts";
 
+/**
+ * 認証保護されたルーティング定義
+ */
 export const ProtectedRoutes: React.FC = () => {
   return (
     <MainLayout>

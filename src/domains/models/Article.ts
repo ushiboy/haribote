@@ -1,3 +1,6 @@
+/**
+ * 記事データ
+ */
 export type Article = {
   id: number;
   title: string;

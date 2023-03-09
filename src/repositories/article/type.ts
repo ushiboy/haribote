@@ -1,3 +1,6 @@
+/**
+ * 記事レスポンスデータ
+ */
 export type ArticleRaw = {
   id: number;
   title: string;

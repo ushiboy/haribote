@@ -3,6 +3,9 @@ import { Button } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
+/**
+ * 保存ボタン
+ */
 export const SaveButton: React.FC<{
   disabled?: boolean;
   onClick: () => void;

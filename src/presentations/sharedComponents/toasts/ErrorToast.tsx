@@ -2,6 +2,9 @@ import MuiAlert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
 import React from "react";
 
+/**
+ * エラートースト
+ */
 export const ErrorToast: React.FC<{
   show: boolean;
   message: string;

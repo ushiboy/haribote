@@ -5,6 +5,9 @@ import React from "react";
 
 import * as S from "./style";
 
+/**
+ * 登録画面
+ */
 export const RegisterPage: React.FC = () => {
   return (
     <Container component="main" maxWidth="xs">

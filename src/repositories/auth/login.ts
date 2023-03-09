@@ -3,11 +3,17 @@ import axios from "axios";
 import "@/drivers/axios";
 import { LOGIN_API } from "@/constants/endpoints";
 
+/**
+ * ログインリクエストパラメータ
+ */
 export type LoginParam = {
   email: string;
   password: string;
 };
 
+/**
+ * ログイン
+ */
 export const login = async ({
   email,
   password,

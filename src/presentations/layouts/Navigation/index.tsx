@@ -8,6 +8,9 @@ import * as S from "./style";
 
 import { useAppState } from "@/presentations/contexts";
 
+/**
+ * ナビゲーションツールバー
+ */
 export const Navigation: React.FC = () => {
   const { t } = useTranslation();
   const { toggleSideMenu, logout } = useAppState();

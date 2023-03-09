@@ -1,3 +1,6 @@
+/**
+ * アプリケーションエラー
+ */
 export class ApplicationException extends Error {
   readonly name: string;
   constructor(error: string) {

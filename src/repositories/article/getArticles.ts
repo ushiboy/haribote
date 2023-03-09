@@ -7,6 +7,9 @@ import "@/drivers/axios";
 import { ARTICLES_API } from "@/constants/endpoints";
 import { Article } from "@/domains/models";
 
+/**
+ * 記事一覧取得
+ */
 export const getArticles = async (): Promise<Article[]> => {
   const res = await axios.get<{ articles: ArticleRaw[] }>(ARTICLES_API);
   return (res.data.articles || []).map((r) => ({

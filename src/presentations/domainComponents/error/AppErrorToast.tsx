@@ -5,6 +5,9 @@ import { ApplicationException, WebApiException } from "@/domains/errors";
 import { useErrorMessage } from "@/presentations/hooks/shared";
 import { ErrorToast } from "@/presentations/sharedComponents/toasts";
 
+/**
+ * アプリケーションエラートースト
+ */
 export const AppErrorToast: React.FC<{
   error: ApplicationException | null;
   duration?: number;

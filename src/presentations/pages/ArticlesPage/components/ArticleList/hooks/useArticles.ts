@@ -2,6 +2,9 @@ import { useCallback, useState } from "react";
 
 import { Article } from "@/domains/models";
 
+/**
+ * 記事一覧フック
+ */
 export const useArticles = (articles: Article[]) => {
   const [isEditing, setEditing] = useState(false);
   const [selected, setSelected] = useState<Set<Article>>(new Set());

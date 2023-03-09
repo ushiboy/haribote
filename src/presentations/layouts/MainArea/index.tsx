@@ -3,6 +3,9 @@ import React from "react";
 
 import * as S from "./style";
 
+/**
+ * アプリケーションのメインコンテンツエリア
+ */
 export const MainArea: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {

@@ -2,6 +2,9 @@ import { Container } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
+/**
+ * Aboutページ
+ */
 export const AboutPage: React.FC = () => {
   const { t } = useTranslation();
   return (

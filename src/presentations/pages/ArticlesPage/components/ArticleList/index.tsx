@@ -21,6 +21,9 @@ import {
 } from "@/presentations/sharedComponents/buttons";
 import { LoadingMask } from "@/presentations/sharedComponents/utilities";
 
+/**
+ * 記事一覧
+ */
 export const ArticleList: React.FC<{
   articles: Article[];
   isLoading: boolean;

@@ -63,20 +63,5 @@ export const AppStateContextProvider: React.FC<{
 };
 
 export const useAppState = () => {
-  const {
-    isAuthenticated,
-    isLoading,
-    isShowSideMenu,
-    authenticated,
-    toggleSideMenu,
-    logout,
-  } = useContext(AppStateContext);
-  return {
-    isAuthenticated,
-    isLoading,
-    isShowSideMenu,
-    authenticated,
-    toggleSideMenu,
-    logout,
-  };
+  return useContext(AppStateContext);
 };
