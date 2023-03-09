@@ -1,4 +1,3 @@
-import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -10,6 +9,10 @@ import { useArticleEdit } from "./hooks";
 import * as S from "./style";
 
 import { Article } from "@/domains/models";
+import {
+  CancelButton,
+  SaveButton,
+} from "@/presentations/sharedComponents/buttons";
 
 export const ArticleEditDialog: React.FC<{
   article: Article;
@@ -32,8 +35,8 @@ export const ArticleEditDialog: React.FC<{
         />
       </S.DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>{t("Save")}</Button>
-        <Button onClick={onClose}>{t("Cancel")}</Button>
+        <SaveButton onClick={onClose} />
+        <CancelButton onClick={onClose} />
       </DialogActions>
     </Dialog>
   );
