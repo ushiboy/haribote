@@ -3,7 +3,7 @@ import { Navigate } from "react-router";
 
 import { LoadingMask } from "../sharedComponents/utilities";
 
-import { useAppState } from "@/presentations/contexts";
+import { useAppState } from "@/presentations/AppStateContext";
 
 /**
  * 認証保護されたルート

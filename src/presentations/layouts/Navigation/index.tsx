@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 import * as S from "./style";
 
-import { useAppState } from "@/presentations/contexts";
+import { useAppState } from "@/presentations/AppStateContext";
 
 /**
  * ナビゲーションツールバー

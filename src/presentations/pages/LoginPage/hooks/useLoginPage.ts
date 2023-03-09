@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 
 import { ApplicationException, WebApiException } from "@/domains/errors";
-import { useAppState } from "@/presentations/contexts";
+import { useAppState } from "@/presentations/AppStateContext";
 import { useLogin } from "@/presentations/hooks/queries";
 import { useErrorMessage } from "@/presentations/hooks/shared";
 

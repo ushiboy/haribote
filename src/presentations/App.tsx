@@ -4,7 +4,7 @@ import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { HashRouter } from "react-router-dom";
 
-import { AppStateContextProvider } from "./contexts";
+import { AppStateContextProvider } from "./AppStateContext";
 import { theme } from "./theme";
 
 import { AppRoutes } from "@/presentations/routes";

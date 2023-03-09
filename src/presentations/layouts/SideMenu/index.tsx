@@ -14,7 +14,7 @@ import { useLocation } from "react-router";
 
 import * as S from "./style";
 
-import { useAppState } from "@/presentations/contexts";
+import { useAppState } from "@/presentations/AppStateContext";
 import { Link } from "@/presentations/sharedComponents/utilities";
 
 /**
