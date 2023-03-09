@@ -2,7 +2,10 @@ import { useCallback, useState } from "react";
 
 import { Article } from "@/domains/models";
 
-export const useArticleList = (articles: Article[]) => {
+/**
+ * 記事一覧フック
+ */
+export const useArticles = (articles: Article[]) => {
   const [isEditing, setEditing] = useState(false);
   const [selected, setSelected] = useState<Set<Article>>(new Set());
   const [page, setPage] = useState(0);
@@ -40,6 +43,8 @@ export const useArticleList = (articles: Article[]) => {
     [selected, setSelected]
   );
 
+  const clearSelect = useCallback(() => setSelected(new Set()), [setSelected]);
+
   const startEdit = useCallback(() => {
     setEditing(true);
   }, [setEditing]);
@@ -63,5 +68,6 @@ export const useArticleList = (articles: Article[]) => {
     resetPage,
     startEdit,
     endEdit,
+    clearSelect,
   };
 };

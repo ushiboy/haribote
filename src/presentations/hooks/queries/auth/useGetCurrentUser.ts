@@ -5,7 +5,10 @@ import { ApplicationException } from "@/domains/errors";
 import { CurrentUser } from "@/domains/models";
 import { getCurrentUser } from "@/repositories";
 
-export const useCurrentUser = (
+/**
+ * ログインユーザー情報取得
+ */
+export const useGetCurrentUser = (
   option: Omit<
     UseQueryOptions<unknown, ApplicationException, CurrentUser>,
     "queryFn"

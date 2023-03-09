@@ -4,6 +4,9 @@ import { Navigation, SideMenu, MainArea } from "../";
 
 import * as S from "./style";
 
+/**
+ * メインレイアウト
+ */
 export const MainLayout: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {

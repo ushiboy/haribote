@@ -6,11 +6,12 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { Container } from "@mui/system";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import { ArticleEditDialog } from "../ArticleEditDialog";
 
 import { ArticleRow } from "./ArticleRow";
-import { useArticleList } from "./hooks";
+import { useArticles } from "./hooks";
 import * as S from "./style";
 
 import { Article } from "@/domains/models";
@@ -20,12 +21,16 @@ import {
 } from "@/presentations/sharedComponents/buttons";
 import { LoadingMask } from "@/presentations/sharedComponents/utilities";
 
+/**
+ * 記事一覧
+ */
 export const ArticleList: React.FC<{
   articles: Article[];
   isLoading: boolean;
   onReloadClick: () => void;
 }> = ({ articles, isLoading, onReloadClick }) => {
-  const { page, rowsPerPage, selected, ...handle } = useArticleList(articles);
+  const { t } = useTranslation();
+  const { page, rowsPerPage, selected, ...handle } = useArticles(articles);
 
   return (
     <Container>
@@ -47,7 +52,7 @@ export const ArticleList: React.FC<{
             <TableHead>
               <TableRow>
                 <TableCell>ID</TableCell>
-                <TableCell>TITLE</TableCell>
+                <TableCell>{t("ArticleTitle")}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -56,7 +61,7 @@ export const ArticleList: React.FC<{
                   key={r.id}
                   row={r}
                   selected={selected.has(r)}
-                  onClick={() => handle.toggleSelect(r)}
+                  onClick={handle.toggleSelect}
                 />
               ))}
             </TableBody>
@@ -72,6 +77,9 @@ export const ArticleList: React.FC<{
           onRowsPerPageChange={(e) =>
             handle.changeRowsPerPage(Number(e.target.value))
           }
+          SelectProps={{ name: "perPage" }}
+          backIconButtonProps={{ name: "back" }}
+          nextIconButtonProps={{ name: "next" }}
         />
       </S.TableWrap>
       <LoadingMask show={isLoading} />

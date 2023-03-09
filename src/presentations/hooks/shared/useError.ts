@@ -1,31 +1,17 @@
-import { useCallback } from "react";
-import { useTranslation } from "react-i18next";
+import { useCallback, useState } from "react";
 
-import {
-  ApplicationException,
-  NetworkException,
-  WebApiException,
-} from "@/domains/errors";
+import { ApplicationException } from "@/domains/errors";
 
+/**
+ * エラー管理
+ */
 export const useError = () => {
-  const { t } = useTranslation();
-  const toMessageFromError = useCallback(
-    (error: ApplicationException): string => {
-      if (error instanceof WebApiException) {
-        switch (error.statusCode) {
-          case 500: {
-            return t("ServerError");
-          }
-        }
-      } else if (error instanceof NetworkException) {
-        return t("NetworkError");
-      }
-      return t("UnknownError");
-    },
-    [t]
-  );
+  const [error, setError] = useState<ApplicationException | null>(null);
+  const clearError = useCallback(() => setError(null), [setError]);
 
   return {
-    toMessageFromError,
+    error,
+    setError,
+    clearError,
   };
 };

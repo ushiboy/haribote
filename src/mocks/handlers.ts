@@ -19,7 +19,7 @@ export const handlers = [
     if (randomFail(5)) {
       return res(ctx.status(500));
     }
-    if (email !== "test@example.com" || password !== "password") {
+    if (email !== "test@example.com" || password !== "hoge123!") {
       return res(ctx.status(401));
     }
     return res(
@@ -61,6 +61,9 @@ export const handlers = [
       return res(ctx.status(401));
     }
     await sleep(1000);
+    if (randomFail(5)) {
+      return res(ctx.status(500));
+    }
     const articles = Array.from(new Array(100)).map((_, i) => ({
       id: i + 1,
       title: `title${i + 1}`,

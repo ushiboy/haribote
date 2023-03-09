@@ -6,6 +6,9 @@ import { LoginPage, RegisterPage, NotFoundPage } from "../pages";
 import { Protect } from "./Protect";
 import { ProtectedRoutes } from "./ProtectedRoutes";
 
+/**
+ * アプリケーションルーティング定義
+ */
 export const AppRoutes: React.FC = () => {
   return (
     <Routes>

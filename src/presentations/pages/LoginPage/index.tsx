@@ -13,6 +13,9 @@ import {
   LoadingMask,
 } from "@/presentations/sharedComponents/utilities";
 
+/**
+ * ログインページ
+ */
 export const LoginPage: React.FC = () => {
   const { t } = useTranslation();
   const { login, error, isLoading, toMessageFromError } = useLoginPage();

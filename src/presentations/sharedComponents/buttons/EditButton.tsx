@@ -3,6 +3,9 @@ import { Button } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
+/**
+ * 編集ボタン
+ */
 export const EditButton: React.FC<{
   disabled?: boolean;
   onClick: () => void;
