@@ -34,6 +34,7 @@ export const ArticleList: React.FC<{
       <S.Controll>
         <ReloadButton
           onClick={() => {
+            handle.clearSelect();
             handle.resetPage();
             onReloadClick();
           }}

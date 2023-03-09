@@ -40,6 +40,8 @@ export const useArticles = (articles: Article[]) => {
     [selected, setSelected]
   );
 
+  const clearSelect = useCallback(() => setSelected(new Set()), [setSelected]);
+
   const startEdit = useCallback(() => {
     setEditing(true);
   }, [setEditing]);
@@ -63,5 +65,6 @@ export const useArticles = (articles: Article[]) => {
     resetPage,
     startEdit,
     endEdit,
+    clearSelect,
   };
 };
