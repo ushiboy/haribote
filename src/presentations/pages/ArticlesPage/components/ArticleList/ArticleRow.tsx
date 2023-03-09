@@ -7,7 +7,7 @@ import { Article } from "@/domains/models";
 export const ArticleRow: React.FC<{
   row: Article;
   selected?: boolean;
-  onClick: () => void;
+  onClick: (row: Article) => void;
 }> = ({ row, selected, onClick }) => {
   return (
     <TableRow
@@ -16,7 +16,7 @@ export const ArticleRow: React.FC<{
       tabIndex={-1}
       key={row.id}
       selected={selected}
-      onClick={onClick}
+      onClick={() => onClick(row)}
     >
       <TableCell>{row.id}</TableCell>
       <TableCell>{row.title}</TableCell>

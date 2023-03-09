@@ -34,7 +34,6 @@ export const ArticleList: React.FC<{
       <S.Controll>
         <ReloadButton
           onClick={() => {
-            handle.clearSelect();
             handle.resetPage();
             onReloadClick();
           }}
@@ -59,7 +58,7 @@ export const ArticleList: React.FC<{
                   key={r.id}
                   row={r}
                   selected={selected.has(r)}
-                  onClick={() => handle.toggleSelect(r)}
+                  onClick={handle.toggleSelect}
                 />
               ))}
             </TableBody>
