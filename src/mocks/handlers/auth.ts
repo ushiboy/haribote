@@ -1,3 +1,4 @@
+import { currentUser } from "@/__fixtures__/CurrentUser";
 import { sleep, randomFail, MockHandler } from "./helper";
 
 export const login: MockHandler = async (req, res, ctx) => {
@@ -23,13 +24,7 @@ export const getCurrentUser: MockHandler = async (req, res, ctx) => {
     return res(ctx.status(401));
   }
   await sleep(1000);
-  return res(
-    ctx.status(200),
-    ctx.json({
-      email: "test@exampole.com",
-      fullName: "Test User",
-    })
-  );
+  return res(ctx.status(200), ctx.json(currentUser));
 };
 
 export const logout: MockHandler = async (req, res, ctx) => {

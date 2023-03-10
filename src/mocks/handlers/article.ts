@@ -1,3 +1,4 @@
+import { createItems } from "@/__fixtures__/Articles";
 import { sleep, randomFail, MockHandler } from "./helper";
 
 export const getArticles: MockHandler = async (req, res, ctx) => {
@@ -9,12 +10,7 @@ export const getArticles: MockHandler = async (req, res, ctx) => {
   if (randomFail(5)) {
     return res(ctx.status(500));
   }
-  const articles = Array.from(new Array(100)).map((_, i) => ({
-    id: i + 1,
-    title: `title${i + 1}`,
-    createdAt: new Date(Date.now() - i * 86400000),
-    modifiedAt: new Date(Date.now() - i * 86400000),
-  }));
+  const articles = createItems(100);
   return res(
     ctx.status(200),
     ctx.json({
