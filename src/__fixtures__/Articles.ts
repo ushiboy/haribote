@@ -21,8 +21,8 @@ export const createItems = (size: number): Article[] => {
     return {
       id: 100 + no,
       title: `title${no}`,
-      createdAt: new Date("2020-01-01 00:00:00"),
-      modifiedAt: new Date("2021-01-01 00:00:00"),
+      createdAt: new Date(Date.now() - i * 86400000),
+      modifiedAt: new Date(Date.now() - i * 86400000),
     };
   });
 };
