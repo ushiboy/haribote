@@ -12,9 +12,11 @@
     "preview": "vite preview - --port 3000",
     "test": "jest",
     "msw:init": "msw init public/ --save",
-    "check": "tsc",
-    "lint": "npm run check && npm run lint:eslint && npm run lint:prettier",
-    "lint:eslint": "eslint src --fix --ext .js,.jsx,.ts,.tsx",
+    "tsc": "tsc",
+    "lint": "tsc && npm run lint:eslint",
+    "lint:fix": "tsc && npm run lint:eslint:fix && npm run lint:prettier",
+    "lint:eslint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "lint:eslint:fix": "eslint src --fix --ext .js,.jsx,.ts,.tsx",
     "lint:prettier": "prettier --write src"
   },
   "dependencies": {
