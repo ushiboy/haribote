@@ -10,7 +10,7 @@
     "build:mock": "npm run clean && NODE_ENV=development vite build",
     "clean": "rm -rf ./dist",
     "preview": "vite preview - --port 3000",
-    "test": "jest",
+    "test": "TZ='Asia/Tokyo' jest",
     "msw:init": "msw init public/ --save",
     "tsc": "tsc",
     "lint": "tsc && npm run lint:eslint",
