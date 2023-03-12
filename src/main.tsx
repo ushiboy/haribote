@@ -5,7 +5,10 @@ import "@/i18n/config";
 import { App } from "./presentations/App";
 
 (async () => {
-  if (process.env.NODE_ENV === "development") {
+  if (
+    process.env.NODE_ENV === "development" &&
+    !import.meta.env.VITE_PROXY_TARGET
+  ) {
     const { worker } = await import("./mocks/browser");
     worker.start({
       serviceWorker: {
