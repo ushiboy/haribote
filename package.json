@@ -9,7 +9,7 @@
     "build": "tsc && npm run clean && vite build",
     "build:mock": "npm run clean && NODE_ENV=development vite build",
     "clean": "rm -rf ./dist",
-    "preview": "vite preview",
+    "preview": "vite preview - --port 3000",
     "test": "jest",
     "msw:init": "msw init public/ --save",
     "check": "tsc",
