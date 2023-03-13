@@ -4,15 +4,15 @@ import { AxiosResponse } from "axios";
 import { getArticles } from "../getArticles";
 
 import { article1, articleRaw1 } from "@/__fixtures__/Articles";
-import { ArticleApi } from "@/drivers/api";
+import { articleApi } from "@/drivers/apiClient";
 
 describe("getArticles", () => {
   afterEach(() => jest.clearAllMocks());
 
   describe("正常系", () => {
-    let spy: jest.SpiedFunction<typeof ArticleApi.prototype.articlesGet>;
+    let spy: jest.SpiedFunction<typeof articleApi.articlesGet>;
     beforeEach(() => {
-      spy = jest.spyOn(ArticleApi.prototype, "articlesGet").mockResolvedValue({
+      spy = jest.spyOn(articleApi, "articlesGet").mockResolvedValue({
         status: 200,
         data: {
           articles: [articleRaw1],

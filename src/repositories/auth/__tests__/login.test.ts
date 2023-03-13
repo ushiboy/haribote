@@ -3,16 +3,16 @@ import { AxiosResponse } from "axios";
 
 import { login } from "../login";
 
-import { AuthApi } from "@/drivers/api";
+import { authApi } from "@/drivers/apiClient";
 
 describe("login", () => {
   afterEach(() => jest.clearAllMocks());
 
   describe("正常系", () => {
-    let spy: jest.SpiedFunction<typeof AuthApi.prototype.loginPost>;
+    let spy: jest.SpiedFunction<typeof authApi.loginPost>;
 
     beforeEach(() => {
-      spy = jest.spyOn(AuthApi.prototype, "loginPost").mockResolvedValue({
+      spy = jest.spyOn(authApi, "loginPost").mockResolvedValue({
         status: 200,
       } as AxiosResponse);
     });

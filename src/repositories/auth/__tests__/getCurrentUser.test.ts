@@ -5,16 +5,16 @@ import { getCurrentUser } from "../getCurrentUser";
 
 import { currentUser } from "@/__fixtures__/CurrentUser";
 import { CURRENT_USER_API } from "@/constants/endpoints";
-import { AuthApi } from "@/drivers/api";
+import { authApi } from "@/drivers/apiClient";
 
 describe("getCurrentUser", () => {
   afterEach(() => jest.clearAllMocks());
 
   describe("正常系", () => {
-    let spy: jest.SpiedFunction<typeof AuthApi.prototype.currentUserGet>;
+    let spy: jest.SpiedFunction<typeof authApi.currentUserGet>;
 
     beforeEach(() => {
-      spy = jest.spyOn(AuthApi.prototype, "currentUserGet").mockResolvedValue({
+      spy = jest.spyOn(authApi, "currentUserGet").mockResolvedValue({
         status: 200,
         data: {
           ...currentUser,

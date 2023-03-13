@@ -1,13 +1,11 @@
-import "@/drivers/axios";
-import { apiConfig } from "@/drivers";
-import { AuthApi, Auth } from "@/drivers/api";
+import { Auth } from "@/drivers/api";
+import { authApi } from "@/drivers/apiClient";
 
 /**
  * ログイン
  */
 export const login = async ({ email, password }: Auth): Promise<boolean> => {
-  const auth = new AuthApi(apiConfig);
-  const res = await auth.loginPost({
+  const res = await authApi.loginPost({
     email,
     password,
   });

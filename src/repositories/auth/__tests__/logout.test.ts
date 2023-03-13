@@ -3,16 +3,16 @@ import { AxiosResponse } from "axios";
 
 import { logout } from "../logout";
 
-import { AuthApi } from "@/drivers/api";
+import { authApi } from "@/drivers/apiClient";
 
 describe("logout", () => {
-  let spy: jest.SpiedFunction<typeof AuthApi.prototype.logoutDelete>;
+  let spy: jest.SpiedFunction<typeof authApi.logoutDelete>;
 
   afterEach(() => jest.clearAllMocks());
 
   describe("正常系", () => {
     beforeEach(() => {
-      spy = jest.spyOn(AuthApi.prototype, "logoutDelete").mockResolvedValue({
+      spy = jest.spyOn(authApi, "logoutDelete").mockResolvedValue({
         status: 200,
       } as AxiosResponse);
     });
