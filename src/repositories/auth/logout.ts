@@ -1,12 +1,12 @@
-import axios from "axios";
-
 import "@/drivers/axios";
-import { LOGOUT_API } from "@/constants/endpoints";
+import { apiConfig } from "@/drivers";
+import { AuthApi } from "@/drivers/api";
 
 /**
  * ログアウト
  */
 export const logout = async (): Promise<boolean> => {
-  const res = await axios.delete(LOGOUT_API);
+  const auth = new AuthApi(apiConfig);
+  const res = await auth.logoutDelete();
   return res.status === 200;
 };

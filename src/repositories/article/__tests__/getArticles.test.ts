@@ -1,30 +1,28 @@
 import { jest } from "@jest/globals";
-import axios from "axios";
+import { AxiosResponse } from "axios";
 
 import { getArticles } from "../getArticles";
 
 import { article1, articleRaw1 } from "@/__fixtures__/Articles";
-import { ARTICLES_API } from "@/constants/endpoints";
-
-type Mocked = jest.Mocked<typeof axios.get>;
-jest.mock("axios");
+import { ArticleApi } from "@/drivers/api";
 
 describe("getArticles", () => {
   afterEach(() => jest.clearAllMocks());
 
   describe("正常系", () => {
+    let spy: jest.SpiedFunction<typeof ArticleApi.prototype.articlesGet>;
     beforeEach(() => {
-      (axios.get as Mocked).mockResolvedValue({
+      spy = jest.spyOn(ArticleApi.prototype, "articlesGet").mockResolvedValue({
         status: 200,
         data: {
           articles: [articleRaw1],
         },
-      });
+      } as AxiosResponse);
     });
 
-    test(`${ARTICLES_API}にGETリクエストが送信される`, async () => {
+    test(`記事取得APIにリクエストが送信される`, async () => {
       await getArticles();
-      expect(axios.get).toHaveBeenCalledWith(ARTICLES_API);
+      expect(spy).toHaveBeenCalled();
     });
 
     test(`レスポンスがドメインモデルに変換される`, async () => {

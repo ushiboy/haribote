@@ -1,13 +1,13 @@
-import axios from "axios";
-
 import "@/drivers/axios";
-import { CURRENT_USER_API } from "@/constants/endpoints";
 import { CurrentUser } from "@/domains/models";
+import { apiConfig } from "@/drivers";
+import { AuthApi } from "@/drivers/api";
 
 /**
  * ログインユーザーの情報取得
  */
 export const getCurrentUser = async (): Promise<CurrentUser> => {
-  const res = await axios.get(CURRENT_USER_API);
+  const auth = new AuthApi(apiConfig);
+  const res = await auth.currentUserGet();
   return res.data;
 };
