@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@mui/material";
+import { ThemeProvider, useMediaQuery } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -10,6 +10,7 @@ import { theme } from "./theme";
 import { AppRoutes } from "@/presentations/routes";
 
 export const App: React.FC = () => {
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const queryClient = new QueryClient();
   queryClient.setDefaultOptions({
     queries: {
@@ -20,8 +21,8 @@ export const App: React.FC = () => {
   });
   return (
     <QueryClientProvider client={queryClient}>
-      <CssBaseline />
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme(prefersDarkMode)}>
+        <CssBaseline />
         <HashRouter>
           <AppStateContextProvider>
             <AppRoutes />
