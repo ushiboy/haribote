@@ -1,12 +1,14 @@
 import React, { createContext, useCallback, useContext, useState } from "react";
 import { useNavigate } from "react-router";
 
+import { ApplicationException } from "@/domains/errors";
 import { CurrentUser } from "@/domains/models";
 import { useGetCurrentUser, useLogout } from "@/presentations/hooks/queries";
 
 type AppState = {
   isLoading: boolean;
   isAuthenticated: boolean;
+  initError: ApplicationException | null;
   authenticated: () => void;
   isShowSideMenu: boolean;
   toggleSideMenu: () => void;
@@ -22,7 +24,7 @@ export const AppStateContextProvider: React.FC<{
   const [currenUser, setCurrentUser] = useState<CurrentUser | null>(null);
   const [isShowSideMenu, setShowSideMenu] = useState(true);
 
-  const { refetch, isLoading } = useGetCurrentUser({
+  const { refetch, error, isLoading } = useGetCurrentUser({
     staleTime: Infinity,
     retry: false,
     onSuccess(data) {
@@ -50,6 +52,7 @@ export const AppStateContextProvider: React.FC<{
   const value: AppState = {
     isLoading,
     isAuthenticated: currenUser != null,
+    initError: error,
     authenticated,
     isShowSideMenu,
     toggleSideMenu,

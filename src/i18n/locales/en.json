@@ -12,6 +12,7 @@
   "Cancel": "Cancel",
   "EditArticle": "Edit Article",
   "AboutThis": "This is haribote.",
+  "CrashError": "An error has occurred. Please try again later. ",
   "ServerError": "An error has occurred on the server.",
   "NetworkError": "Network connection failed.",
   "LoginError": "Incorrect email address or password.",
