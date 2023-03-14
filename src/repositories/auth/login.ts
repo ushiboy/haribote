@@ -1,24 +1,11 @@
-import axios from "axios";
-
-import "@/drivers/axios";
-import { LOGIN_API } from "@/constants/endpoints";
-
-/**
- * ログインリクエストパラメータ
- */
-export type LoginParam = {
-  email: string;
-  password: string;
-};
+import { Auth } from "@/drivers/api";
+import { authApi } from "@/drivers/apiClient";
 
 /**
  * ログイン
  */
-export const login = async ({
-  email,
-  password,
-}: LoginParam): Promise<boolean> => {
-  const res = await axios.post(LOGIN_API, {
+export const login = async ({ email, password }: Auth): Promise<boolean> => {
+  const res = await authApi.loginPost({
     email,
     password,
   });

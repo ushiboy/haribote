@@ -1,10 +1,11 @@
 import { useMutation } from "react-query";
 
 import { ApplicationException } from "@/domains/errors";
-import { login, LoginParam } from "@/repositories";
+import { Auth } from "@/drivers/api";
+import { login } from "@/repositories";
 
 /**
  * ログイン
  */
 export const useLogin = () =>
-  useMutation<unknown, ApplicationException, LoginParam, unknown>(login);
+  useMutation<unknown, ApplicationException, Auth, unknown>(login);

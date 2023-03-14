@@ -1,24 +1,23 @@
 import { jest } from "@jest/globals";
-import axios from "axios";
+import { AxiosResponse } from "axios";
 
 import { login } from "../login";
 
-import { LOGIN_API } from "@/constants/endpoints";
-
-type Mocked = jest.Mocked<typeof axios.post>;
-jest.mock("axios");
+import { authApi } from "@/drivers/apiClient";
 
 describe("login", () => {
   afterEach(() => jest.clearAllMocks());
 
   describe("正常系", () => {
+    let spy: jest.SpiedFunction<typeof authApi.loginPost>;
+
     beforeEach(() => {
-      (axios.post as Mocked).mockResolvedValue({
+      spy = jest.spyOn(authApi, "loginPost").mockResolvedValue({
         status: 200,
-      });
+      } as AxiosResponse);
     });
 
-    test(`${LOGIN_API}にPOSTリクエストが送信される`, async () => {
+    test(`ログインAPIにリクエストが送信される`, async () => {
       const email = "test@example.com";
       const password = "xxxxx";
 
@@ -26,7 +25,7 @@ describe("login", () => {
         email,
         password,
       });
-      expect(axios.post).toHaveBeenCalledWith(LOGIN_API, {
+      expect(spy).toHaveBeenCalledWith({
         email,
         password,
       });

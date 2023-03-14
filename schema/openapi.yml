@@ -1,0 +1,127 @@
+openapi: '3.0.2'
+info:
+  title: API Title
+  version: '1.0'
+servers:
+  - url: "{protocol}://{origin}/haribote/api/"
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: http
+      origin:
+        default: "localhost:3000"
+tags:
+  - name: auth
+    description: 認証系
+  - name: article
+    description: 記事系
+paths:
+  /login:
+    post:
+      summary: ログイン
+      tags:
+        - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Auth"
+      responses:
+        '200':
+          description: OK
+
+  /current-user:
+    get:
+      summary: ログインユーザー情報取得
+      tags:
+        - auth
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CurrentUser"
+
+  /logout:
+    delete:
+      summary: ログアウト
+      tags:
+        - auth
+      responses:
+        '200':
+          description: OK
+
+  /articles:
+    get:
+      summary: 記事一覧取得
+      tags:
+        - article
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - articles
+                properties:
+                  articles:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Article"
+
+
+components:
+  schemas:
+    Auth:
+      description: 認証データ
+      type: object
+      required:
+        - email 
+        - password
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+          format: password
+
+    CurrentUser:
+      description: ログインユーザー情報
+      type: object
+      required:
+        - email 
+        - fullName 
+      properties:
+        email:
+          type: string
+        fullName:
+          type: string
+
+    Article: 
+      description: 記事データ
+      type: object
+      required:
+        - id
+        - title
+        - createdAt
+        - modifiedAt
+      properties:
+        id:
+          type: number
+          example: 123
+        title:
+          type: string
+          example: article 1
+        createdAt:
+          type: string
+          format: date-time
+          example: "2023-01-01T00:00:00.000Z"
+        modifiedAt:
+          type: string
+          format: date-time
+          example: "2023-01-01T00:00:00.000Z"

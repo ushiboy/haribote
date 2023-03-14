@@ -1,30 +1,30 @@
 import { jest } from "@jest/globals";
-import axios from "axios";
+import { AxiosResponse } from "axios";
 
 import { getCurrentUser } from "../getCurrentUser";
 
 import { currentUser } from "@/__fixtures__/CurrentUser";
 import { CURRENT_USER_API } from "@/constants/endpoints";
-
-type Mocked = jest.Mocked<typeof axios.get>;
-jest.mock("axios");
+import { authApi } from "@/drivers/apiClient";
 
 describe("getCurrentUser", () => {
   afterEach(() => jest.clearAllMocks());
 
   describe("正常系", () => {
+    let spy: jest.SpiedFunction<typeof authApi.currentUserGet>;
+
     beforeEach(() => {
-      (axios.get as Mocked).mockResolvedValue({
+      spy = jest.spyOn(authApi, "currentUserGet").mockResolvedValue({
         status: 200,
         data: {
           ...currentUser,
         },
-      });
+      } as AxiosResponse);
     });
 
     test(`${CURRENT_USER_API}にGETリクエストが送信される`, async () => {
       const r = await getCurrentUser();
-      expect(axios.get).toHaveBeenCalledWith(CURRENT_USER_API);
+      expect(spy).toHaveBeenCalled();
       expect(r).toEqual(currentUser);
     });
   });

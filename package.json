@@ -12,6 +12,7 @@
     "preview": "vite preview - --port 3000",
     "test": "TZ='Asia/Tokyo' jest",
     "msw:init": "msw init public/ --save",
+    "gen:api": "openapi-generator-cli generate -g typescript-axios -i ./schema/openapi.yml -o ./src/drivers/api",
     "tsc": "tsc",
     "lint": "tsc && npm run lint:eslint",
     "lint:fix": "tsc && npm run lint:eslint:fix && npm run lint:prettier",
@@ -36,6 +37,7 @@
     "react-router-dom": "^6.8.2"
   },
   "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.5.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.4.0",
