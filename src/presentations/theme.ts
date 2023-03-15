@@ -22,6 +22,7 @@ export const theme = (isDark: boolean) =>
             },
             info: { main: "#2a99a5" },
             success: { main: "#2bc016" },
+            background: { default: "#ffffff", paper: "#f4f4f4" },
           }
         : {
             // palette values for dark mode
@@ -40,6 +41,7 @@ export const theme = (isDark: boolean) =>
             },
             info: { main: "#34beca" },
             success: { main: "#39e41f" },
+            background: { default: "#131718", paper: "#2D2D2D" },
           }),
     },
   });
