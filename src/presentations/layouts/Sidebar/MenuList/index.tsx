@@ -1,10 +1,10 @@
 import DescriptionIcon from "@mui/icons-material/Description";
 import InfoIcon from "@mui/icons-material/Info";
-import { List } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router";
 
 import { NavItem } from "./NavItem";
+import * as S from "./style";
 
 /**
  * サイドバーのリスト
@@ -13,7 +13,7 @@ const MenuList = () => {
   const { pathname } = useLocation();
   const { t } = useTranslation();
   return (
-    <List sx={{ px: "16px" }}>
+    <S.List>
       <>
         <NavItem
           linkTo="articles"
@@ -34,7 +34,7 @@ const MenuList = () => {
           title={t("About")}
         />
       </>
-    </List>
+    </S.List>
   );
 };
 
