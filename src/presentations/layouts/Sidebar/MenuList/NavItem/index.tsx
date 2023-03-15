@@ -5,7 +5,7 @@ import * as S from "./style";
 import { Link } from "@/presentations/sharedComponents/utilities";
 
 /**
- * サイドバーのボタン
+ * サイドバーのリンクボタン
  */
 export const NavItem: React.FC<{
   linkTo: string;
