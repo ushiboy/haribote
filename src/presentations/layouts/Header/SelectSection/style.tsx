@@ -2,7 +2,7 @@ import { FormControl } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 export const SelectBox = styled(FormControl)(({ theme }) => ({
-  m: 1,
+  margin: theme.spacing(1),
   minWidth: 180,
   "& .MuiOutlinedInput-root": {
     borderRadius: "8px",

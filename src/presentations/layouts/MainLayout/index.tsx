@@ -1,11 +1,6 @@
 import React from "react";
 
-import {
-  /** Navigation, SideMenu, MainArea */
-  Header,
-  SideBar,
-  Main,
-} from "../";
+import { Header, SideBar, Main } from "../";
 
 import * as S from "./style";
 
@@ -17,9 +12,6 @@ export const MainLayout: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   return (
     <S.Root>
-      {/* <Navigation />
-      <SideMenu />
-      <MainArea>{children}</MainArea> */}
       <Header />
       <SideBar />
       <Main>{children}</Main>

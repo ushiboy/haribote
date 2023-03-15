@@ -1,14 +1,11 @@
-import {
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Typography,
-} from "@mui/material";
+import { ListItemIcon, ListItemText, Typography } from "@mui/material";
+
+import * as S from "./style";
 
 import { Link } from "@/presentations/sharedComponents/utilities";
 
 /**
- * サイドバーのボタン
+ * サイドバーのリンクボタン
  */
 export const NavItem: React.FC<{
   linkTo: string;
@@ -18,17 +15,7 @@ export const NavItem: React.FC<{
 }> = ({ linkTo, selected, icon, title }) => {
   return (
     <Link to={linkTo}>
-      <ListItemButton
-        sx={{
-          borderRadius: `12px`,
-          mb: 1,
-          px: 1,
-        }}
-        selected={selected}
-        onClick={() => {
-          console.log("click");
-        }}
-      >
+      <S.ListItemButton selected={selected}>
         <ListItemIcon>{icon}</ListItemIcon>
         <ListItemText
           primary={
@@ -40,7 +27,7 @@ export const NavItem: React.FC<{
             </Typography>
           }
         />
-      </ListItemButton>
+      </S.ListItemButton>
     </Link>
   );
 };

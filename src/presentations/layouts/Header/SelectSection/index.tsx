@@ -11,7 +11,7 @@ import { useState } from "react";
 import * as S from "./style";
 
 /**
- * 私書箱のセレクター
+ * カテゴリのセレクター
  */
 export const SelectSection: React.FC = () => {
   const categories = ["Category1", "Category2", "Category3"];
@@ -26,7 +26,7 @@ export const SelectSection: React.FC = () => {
       <Select
         value={category}
         onChange={handleChange}
-        label="PoBox"
+        label="Category"
         startAdornment={
           <InputAdornment position="start">
             <InboxIcon />
@@ -37,7 +37,9 @@ export const SelectSection: React.FC = () => {
           <em>None</em>
         </MenuItem>
         {categories.map((v) => (
-          <MenuItem value={v}>{v}</MenuItem>
+          <MenuItem key={v} value={v}>
+            {v}
+          </MenuItem>
         ))}
       </Select>
     </S.SelectBox>
