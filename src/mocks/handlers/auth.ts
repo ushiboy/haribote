@@ -23,6 +23,9 @@ export const getCurrentUser: MockHandler = async (req, res, ctx) => {
   if (!session) {
     return res(ctx.status(401));
   }
+  if (randomFail(5)) {
+    return res(ctx.status(500));
+  }
   await sleep(1000);
   return res(ctx.status(200), ctx.json(currentUser));
 };
