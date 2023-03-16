@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useContext, useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 
 import { ApplicationException } from "@/domains/errors";
 import { CurrentUser } from "@/domains/models";
@@ -21,6 +21,7 @@ export const AppStateContextProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [currenUser, setCurrentUser] = useState<CurrentUser | null>(null);
   const [isShowSideMenu, setShowSideMenu] = useState(true);
 
@@ -30,13 +31,21 @@ export const AppStateContextProvider: React.FC<{
     onSuccess(data) {
       setCurrentUser(data);
     },
+    onError() {
+      setCurrentUser(null);
+    },
   });
 
   const logoutHandle = useLogout();
 
   const authenticated = useCallback(() => {
     refetch();
-    navigate("/articles");
+    const s = new URLSearchParams(location.search);
+    if (s.has("redirectUrl")) {
+      navigate(s.get("redirectUrl") as string);
+    } else {
+      navigate("/articles");
+    }
   }, []);
 
   const toggleSideMenu = useCallback(() => {
