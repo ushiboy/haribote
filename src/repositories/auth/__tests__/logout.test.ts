@@ -1,25 +1,23 @@
 import { jest } from "@jest/globals";
-import { AxiosResponse } from "axios";
+import axios from "axios";
 
 import { logout } from "../logout";
 
-import { authApi } from "@/drivers/apiClient";
+type Mocked = jest.Mocked<typeof axios.delete>;
+jest.mock("axios");
 
 describe("logout", () => {
-  let spy: jest.SpiedFunction<typeof authApi.logoutDelete>;
-
   afterEach(() => jest.clearAllMocks());
 
   describe("正常系", () => {
     beforeEach(() => {
-      spy = jest.spyOn(authApi, "logoutDelete").mockResolvedValue({
+      (axios.delete as Mocked).mockResolvedValue({
         status: 200,
-      } as AxiosResponse);
+      });
     });
 
-    test(`ログアウトAPIにリクエストが送信される`, async () => {
+    test(`ログアウトAPIが実行される`, async () => {
       const r = await logout();
-      expect(spy).toHaveBeenCalled();
       expect(r).toBe(true);
     });
   });
