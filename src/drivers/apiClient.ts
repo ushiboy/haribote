@@ -1,4 +1,5 @@
-import { ArticleApi, AuthApi, Configuration } from "./api";
+import { ArticleApi, Configuration } from "./api/article";
+import { AuthApi } from "./api/auth";
 
 import "@/drivers/axios";
 

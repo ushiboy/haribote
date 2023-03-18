@@ -1,0 +1,65 @@
+openapi: '3.0.2'
+info:
+  title: API Title
+  version: '1.0'
+servers:
+  - url: "{protocol}://{origin}/haribote/api/"
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: http
+      origin:
+        default: "localhost:3000"
+tags:
+  - name: article
+    description: 記事系
+paths:
+
+  /articles:
+    get:
+      summary: 記事一覧取得
+      tags:
+        - article
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - articles
+                properties:
+                  articles:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Article"
+
+
+components:
+  schemas:
+    Article: 
+      description: 記事データ
+      type: object
+      required:
+        - id
+        - title
+        - createdAt
+        - modifiedAt
+      properties:
+        id:
+          type: number
+          example: 123
+        title:
+          type: string
+          example: article 1
+        createdAt:
+          type: string
+          format: date-time
+          example: "2023-01-01T00:00:00.000Z"
+        modifiedAt:
+          type: string
+          format: date-time
+          example: "2023-01-01T00:00:00.000Z"

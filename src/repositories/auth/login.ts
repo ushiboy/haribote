@@ -1,10 +1,15 @@
-import { Auth } from "@/drivers/api";
+import { Auth } from "@/drivers/api/auth";
 import { authApi } from "@/drivers/apiClient";
+
+export type LoginParam = Auth;
 
 /**
  * ログイン
  */
-export const login = async ({ email, password }: Auth): Promise<boolean> => {
+export const login = async ({
+  email,
+  password,
+}: LoginParam): Promise<boolean> => {
   const res = await authApi.loginPost({
     email,
     password,
