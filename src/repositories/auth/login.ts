@@ -1,5 +1,5 @@
-import { Auth } from "@/drivers/api/auth";
-import { authApi } from "@/drivers/apiClient";
+import "@/drivers/axios";
+import { Auth, postLogin } from "@/drivers/api/auth";
 
 export type LoginParam = Auth;
 
@@ -10,7 +10,7 @@ export const login = async ({
   email,
   password,
 }: LoginParam): Promise<boolean> => {
-  const res = await authApi.loginPost({
+  const res = await postLogin({
     email,
     password,
   });
