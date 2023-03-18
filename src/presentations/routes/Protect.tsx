@@ -1,8 +1,9 @@
 import React from "react";
-import { Navigate } from "react-router";
+import { Navigate, useLocation } from "react-router";
 
 import { LoadingMask } from "../sharedComponents/utilities";
 
+import { WebApiException } from "@/domains/errors";
 import { useAppState } from "@/presentations/AppStateContext";
 import { CrashPage } from "@/presentations/pages";
 
@@ -12,11 +13,18 @@ import { CrashPage } from "@/presentations/pages";
 export const Protect: React.FC<{
   element: React.ReactNode;
 }> = ({ element }) => {
+  const location = useLocation();
   const { isAuthenticated, initError, isLoading } = useAppState();
-  if (initError) {
-    return <CrashPage />;
-  } else if (isLoading) {
+  if (isLoading) {
     return <LoadingMask show />;
+  } else if (isAuthenticated) {
+    return <>{element}</>;
+  } else if (
+    initError &&
+    initError instanceof WebApiException &&
+    initError.statusCode !== 401
+  ) {
+    return <CrashPage />;
   }
-  return <>{isAuthenticated ? element : <Navigate to="/" replace />}</>;
+  return <Navigate to="/" state={{ from: location }} replace />;
 };
