@@ -1,4 +1,5 @@
 import React, { createContext, useCallback, useContext, useState } from "react";
+import { useQueryClient } from "react-query";
 import { useNavigate, useLocation } from "react-router";
 
 import { ApplicationException } from "@/domains/errors";
@@ -13,6 +14,7 @@ type AppState = {
   isShowSideMenu: boolean;
   toggleSideMenu: () => void;
   logout: () => Promise<void>;
+  release: () => void;
 };
 
 export const AppStateContext = createContext(Object.create(null) as AppState);
@@ -20,6 +22,7 @@ export const AppStateContext = createContext(Object.create(null) as AppState);
 export const AppStateContextProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
+  const client = useQueryClient();
   const navigate = useNavigate();
   const location = useLocation();
   const [currenUser, setCurrentUser] = useState<CurrentUser | null>(null);
@@ -40,13 +43,9 @@ export const AppStateContextProvider: React.FC<{
 
   const authenticated = useCallback(() => {
     refetch();
-    const s = new URLSearchParams(location.search);
-    if (s.has("redirectUrl")) {
-      navigate(s.get("redirectUrl") as string);
-    } else {
-      navigate("/articles");
-    }
-  }, []);
+    const from = location.state?.from?.pathname || "/articles";
+    navigate(from, { replace: true });
+  }, [location, navigate]);
 
   const toggleSideMenu = useCallback(() => {
     setShowSideMenu(!isShowSideMenu);
@@ -55,8 +54,13 @@ export const AppStateContextProvider: React.FC<{
   const logout = useCallback(async () => {
     setCurrentUser(null);
     await logoutHandle.mutateAsync();
-    navigate("/");
-  }, [logoutHandle]);
+    client.clear();
+    navigate("/", { replace: true });
+  }, [logoutHandle, client]);
+
+  const release = useCallback(() => {
+    setCurrentUser(null);
+  }, [setCurrentUser]);
 
   const value: AppState = {
     isLoading,
@@ -66,6 +70,7 @@ export const AppStateContextProvider: React.FC<{
     isShowSideMenu,
     toggleSideMenu,
     logout,
+    release,
   };
   return (
     <AppStateContext.Provider value={value}>
