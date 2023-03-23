@@ -1,7 +1,7 @@
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
 
-import { drawerWidth } from "../constant";
+import { drawerWidth } from "../../constant";
 
 import MenuList from "./MenuList";
 import * as S from "./style";

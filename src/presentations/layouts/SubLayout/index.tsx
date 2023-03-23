@@ -3,17 +3,15 @@ import { Outlet } from "react-router";
 
 import { Header } from "./Header";
 import { Main } from "./Main";
-import { SideBar } from "./Sidebar";
 import * as S from "./style";
 
 /**
- * メインレイアウト
+ * サブレイアウト
  */
-export const MainLayout: React.FC = () => {
+export const SubLayout: React.FC = () => {
   return (
     <S.Root>
       <Header />
-      <SideBar />
       <Main>
         <Outlet />
       </Main>

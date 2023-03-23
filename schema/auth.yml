@@ -73,9 +73,12 @@ components:
       required:
         - email 
         - fullName 
+        - isAdmin
       properties:
         email:
           type: string
         fullName:
           type: string
+        isAdmin:
+          type: boolean
 

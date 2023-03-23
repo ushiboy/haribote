@@ -16,7 +16,7 @@ export const getArticles: MockHandler = async (req, res, ctx) => {
     ctx.json({
       articles,
     }),
-    ctx.cookie("SESSION", "xxxx", {
+    ctx.cookie("SESSION", session, {
       httpOnly: true,
       expires: new Date(Date.now() + 30 * 60 * 60 * 1000),
     })

@@ -2,7 +2,7 @@ import { Avatar, Box, ButtonBase } from "@mui/material";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import { styled } from "@mui/material/styles";
 
-import { drawerWidth } from "../constant";
+import { drawerWidth } from "../../constant";
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
