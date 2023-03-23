@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
 import { styled } from "@mui/material/styles";
 
-import { drawerWidth, headerTop } from "../constant";
+import { drawerWidth, headerTop } from "../../constant";
 
 export const Drawer = styled(MuiDrawer)(({ theme }) => ({
   "& .MuiDrawer-paper": {

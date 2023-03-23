@@ -1,7 +1,7 @@
 import { BoxProps } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-import { drawerWidth, headerTop } from "../constant";
+import { drawerWidth, headerTop } from "../../constant";
 
 interface ContentProps extends BoxProps {
   open?: boolean;
