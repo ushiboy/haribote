@@ -8,6 +8,7 @@ import { useGetCurrentUser, useLogout } from "@/presentations/hooks/queries";
 
 type AppState = {
   isLoading: boolean;
+  isAdmin: boolean;
   isAuthenticated: boolean;
   initError: ApplicationException | null;
   authenticated: () => void;
@@ -64,6 +65,7 @@ export const AppStateContextProvider: React.FC<{
 
   const value: AppState = {
     isLoading,
+    isAdmin: currenUser?.isAdmin === true,
     isAuthenticated: currenUser != null,
     initError: error,
     authenticated,
