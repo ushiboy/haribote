@@ -1,19 +1,19 @@
-import { jest } from "@jest/globals";
 import axios from "axios";
+import { vi } from "vitest";
 
 import { getArticles } from "../getArticles";
 
 import { article1, articleRaw1 } from "@/__fixtures__/Articles";
 
-type Mocked = jest.Mocked<typeof axios.get>;
-jest.mock("axios");
+vi.mock("axios");
+const mocked = vi.mocked(axios.get);
 
 describe("getArticles", () => {
-  afterEach(() => jest.clearAllMocks());
+  afterEach(() => vi.clearAllMocks());
 
   describe("正常系", () => {
     beforeEach(() => {
-      (axios.get as Mocked).mockResolvedValue({
+      mocked.mockResolvedValue({
         status: 200,
         data: {
           articles: [articleRaw1],

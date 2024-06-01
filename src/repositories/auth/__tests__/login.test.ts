@@ -1,17 +1,17 @@
-import { jest } from "@jest/globals";
 import axios from "axios";
+import { vi } from "vitest";
 
 import { login } from "../login";
 
-type Mocked = jest.Mocked<typeof axios.post>;
-jest.mock("axios");
+vi.mock("axios");
+const mocked = vi.mocked(axios.post);
 
 describe("login", () => {
-  afterEach(() => jest.clearAllMocks());
+  afterEach(() => vi.clearAllMocks());
 
   describe("正常系", () => {
     beforeEach(() => {
-      (axios.post as Mocked).mockResolvedValue({
+      mocked.mockResolvedValue({
         status: 200,
       });
     });

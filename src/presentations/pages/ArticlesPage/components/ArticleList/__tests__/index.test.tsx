@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import "@testing-library/jest-dom";
 import { fireEvent, render, RenderResult } from "@testing-library/react";
+import { vi } from "vitest";
 
 import { ArticleList } from "..";
 
@@ -9,7 +9,7 @@ import { Article } from "@/domains/models";
 import { i18n } from "@/i18n/config";
 
 describe("ArticleList", () => {
-  const onReloadClick = jest.fn();
+  const onReloadClick = vi.fn();
 
   const out = (articles: Article[]) =>
     render(
