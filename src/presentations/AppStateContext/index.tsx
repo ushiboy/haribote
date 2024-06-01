@@ -46,7 +46,7 @@ export const AppStateContextProvider: React.FC<{
     refetch();
     const from = location.state?.from?.pathname || "/articles";
     navigate(from, { replace: true });
-  }, [location, navigate]);
+  }, [location, navigate, refetch]);
 
   const toggleSideMenu = useCallback(() => {
     setShowSideMenu(!isShowSideMenu);
@@ -57,7 +57,7 @@ export const AppStateContextProvider: React.FC<{
     await logoutHandle.mutateAsync();
     client.clear();
     navigate("/", { replace: true });
-  }, [logoutHandle, client]);
+  }, [logoutHandle, client, navigate]);
 
   const release = useCallback(() => {
     setCurrentUser(null);

@@ -29,7 +29,7 @@ export const useLoginPage = () => {
         }
       );
     },
-    [loginHandle]
+    [loginHandle, appStateHandle]
   );
 
   const toMessageFromError = useCallback(
