@@ -10,7 +10,13 @@ import { HeaderLogo } from "@/presentations/sharedComponents/logos";
  */
 export const Header: React.FC = () => {
   return (
-    <S.AppBar enableColorOnDark position="fixed" color="inherit" elevation={0}>
+    <S.AppBar
+      enableColorOnDark
+      position="fixed"
+      color="inherit"
+      elevation={0}
+      data-testid="subLayoutHeader"
+    >
       <Toolbar>
         <S.LogoArea>
           <S.Logo component="span">

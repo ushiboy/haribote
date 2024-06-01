@@ -18,7 +18,13 @@ export const Header: React.FC = () => {
   const { toggleSideMenu } = useMainLayoutContext();
 
   return (
-    <S.AppBar enableColorOnDark position="fixed" color="inherit" elevation={0}>
+    <S.AppBar
+      enableColorOnDark
+      position="fixed"
+      color="inherit"
+      elevation={0}
+      data-testid="mainLayoutHeader"
+    >
       <Toolbar>
         <S.LogoArea>
           <S.Logo component="span">

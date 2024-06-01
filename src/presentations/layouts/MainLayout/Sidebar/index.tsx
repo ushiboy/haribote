@@ -27,6 +27,7 @@ export const SideBar: React.FC = () => {
         width: matchUpMd ? drawerWidth : "auto",
       }}
       aria-label="mailbox folders"
+      data-testid="mainLayoutSideBar"
     >
       <S.Drawer
         variant={matchUpMd ? "persistent" : "temporary"}

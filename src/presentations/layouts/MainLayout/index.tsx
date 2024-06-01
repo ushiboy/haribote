@@ -12,7 +12,7 @@ import * as S from "./style";
  */
 export const MainLayout: React.FC = () => {
   return (
-    <S.Root>
+    <S.Root data-testid="mainLayout">
       <MainLayoutContextProvider>
         <Header />
         <SideBar />

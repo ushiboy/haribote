@@ -10,5 +10,9 @@ import * as S from "./style";
 export const Main: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isShowSideMenu } = useMainLayoutContext();
 
-  return <S.Content open={isShowSideMenu}>{children}</S.Content>;
+  return (
+    <S.Content open={isShowSideMenu} data-testid="mainLayoutMain">
+      {children}
+    </S.Content>
+  );
 };
