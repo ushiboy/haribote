@@ -17,7 +17,7 @@ describe("ArticleList", () => {
         articles={articles}
         isLoading={false}
         onReloadClick={onReloadClick}
-      />
+      />,
     );
 
   beforeEach(() => {

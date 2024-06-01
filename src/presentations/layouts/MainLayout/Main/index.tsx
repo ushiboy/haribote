@@ -4,7 +4,6 @@ import { useMainLayoutContext } from "../context";
 
 import * as S from "./style";
 
-
 /**
  * アプリケーションのメインコンテンツエリア
  */

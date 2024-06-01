@@ -1,10 +1,15 @@
 import { useMutation } from "react-query";
 
 import { ApplicationException } from "@/domains/errors";
-import { login, LoginParam } from "@/repositories";
+import { useRepositoryComposition } from "@/presentations/contexts";
+import { LoginParam } from "@/repositories";
 
 /**
  * ログイン
  */
-export const useLogin = () =>
-  useMutation<unknown, ApplicationException, LoginParam, unknown>(login);
+export const useLogin = () => {
+  const {
+    auth: { login },
+  } = useRepositoryComposition();
+  return useMutation<unknown, ApplicationException, LoginParam, unknown>(login);
+};

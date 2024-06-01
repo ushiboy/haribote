@@ -5,9 +5,11 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { HashRouter } from "react-router-dom";
 
 import { AppStateContextProvider } from "./AppStateContext";
+import { RepositoryCompositionContextProvider } from "./contexts";
 import { theme } from "./theme";
 
 import { AppRoutes } from "@/presentations/routes";
+import { repositoryComposition } from "@/repositories";
 
 export const App: React.FC = () => {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -21,14 +23,18 @@ export const App: React.FC = () => {
   });
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme(prefersDarkMode)}>
-        <CssBaseline />
-        <HashRouter>
-          <AppStateContextProvider>
-            <AppRoutes />
-          </AppStateContextProvider>
-        </HashRouter>
-      </ThemeProvider>
+      <RepositoryCompositionContextProvider
+        repositoryComposition={repositoryComposition}
+      >
+        <ThemeProvider theme={theme(prefersDarkMode)}>
+          <CssBaseline />
+          <HashRouter>
+            <AppStateContextProvider>
+              <AppRoutes />
+            </AppStateContextProvider>
+          </HashRouter>
+        </ThemeProvider>
+      </RepositoryCompositionContextProvider>
     </QueryClientProvider>
   );
 };

@@ -25,7 +25,7 @@ export const useErrorMessage = () => {
       }
       return t("UnknownError");
     },
-    [t]
+    [t],
   );
 
   return {

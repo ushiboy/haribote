@@ -25,7 +25,7 @@ export const useError = () => {
       }
       _setError(error);
     },
-    [location, queryClient, release, navigate, _setError]
+    [location, queryClient, release, navigate, _setError],
   );
 
   const clearError = useCallback(() => _setError(null), [_setError]);

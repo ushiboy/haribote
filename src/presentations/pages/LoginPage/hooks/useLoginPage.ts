@@ -26,10 +26,10 @@ export const useLoginPage = () => {
           onSuccess() {
             appStateHandle.authenticated();
           },
-        }
+        },
       );
     },
-    [loginHandle, appStateHandle]
+    [loginHandle, appStateHandle],
   );
 
   const toMessageFromError = useCallback(
@@ -39,7 +39,7 @@ export const useLoginPage = () => {
       }
       return errorHandle.toMessageFromError(error);
     },
-    [errorHandle, t]
+    [errorHandle, t],
   );
 
   return {

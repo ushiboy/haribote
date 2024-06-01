@@ -14,11 +14,11 @@ export const MainLayout: React.FC = () => {
   return (
     <S.Root>
       <MainLayoutContextProvider>
-      <Header />
-      <SideBar />
-      <Main>
-        <Outlet />
-      </Main>
+        <Header />
+        <SideBar />
+        <Main>
+          <Outlet />
+        </Main>
       </MainLayoutContextProvider>
     </S.Root>
   );

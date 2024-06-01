@@ -3,7 +3,7 @@ import { useQuery, UseQueryOptions } from "react-query";
 import { CURRENT_USER_API } from "@/constants/endpoints";
 import { ApplicationException } from "@/domains/errors";
 import { CurrentUser } from "@/domains/models";
-import { getCurrentUser } from "@/repositories";
+import { useRepositoryComposition } from "@/presentations/contexts";
 
 /**
  * ログインユーザー情報取得
@@ -12,5 +12,10 @@ export const useGetCurrentUser = (
   option: Omit<
     UseQueryOptions<unknown, ApplicationException, CurrentUser>,
     "queryFn"
-  >
-) => useQuery(CURRENT_USER_API, getCurrentUser, option);
+  >,
+) => {
+  const {
+    auth: { getCurrentUser },
+  } = useRepositoryComposition();
+  return useQuery(CURRENT_USER_API, getCurrentUser, option);
+};
