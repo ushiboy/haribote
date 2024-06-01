@@ -20,7 +20,7 @@ export const LoginPage: React.FC = () => {
   const { t } = useTranslation();
   const { login, error, isLoading, toMessageFromError } = useLoginPage();
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" data-testid="loginPage">
       <S.Root>
         <S.LoginAvatar>
           <LockOutlinedIcon />
@@ -36,6 +36,7 @@ export const LoginPage: React.FC = () => {
           }}
         >
           <TextField
+            data-testid="emailTextField"
             margin="normal"
             required
             fullWidth
@@ -43,8 +44,10 @@ export const LoginPage: React.FC = () => {
             name="email"
             autoComplete="email"
             autoFocus
+            inputProps={{ "data-testid": "emailInput" }}
           />
           <TextField
+            data-testid="passwordTextField"
             margin="normal"
             required
             fullWidth
@@ -52,9 +55,20 @@ export const LoginPage: React.FC = () => {
             label={t("Password")}
             type="password"
             autoComplete="current-password"
+            inputProps={{ "data-testid": "passwordInput" }}
           />
-          {error && <ErrorMessage message={toMessageFromError(error)} />}
-          <S.LoginButton type="submit" fullWidth variant="contained">
+          {error && (
+            <ErrorMessage
+              dataTestId="loginErrorMessage"
+              message={toMessageFromError(error)}
+            />
+          )}
+          <S.LoginButton
+            type="submit"
+            fullWidth
+            variant="contained"
+            data-testid="signInButton"
+          >
             {t("SignIn")}
           </S.LoginButton>
         </S.Form>
