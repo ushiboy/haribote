@@ -12,8 +12,6 @@ type AppState = {
   isAuthenticated: boolean;
   initError: ApplicationException | null;
   authenticated: () => void;
-  isShowSideMenu: boolean;
-  toggleSideMenu: () => void;
   logout: () => Promise<void>;
   release: () => void;
 };
@@ -27,7 +25,6 @@ export const AppStateContextProvider: React.FC<{
   const navigate = useNavigate();
   const location = useLocation();
   const [currenUser, setCurrentUser] = useState<CurrentUser | null>(null);
-  const [isShowSideMenu, setShowSideMenu] = useState(true);
 
   const { refetch, error, isLoading } = useGetCurrentUser({
     staleTime: Infinity,
@@ -48,10 +45,6 @@ export const AppStateContextProvider: React.FC<{
     navigate(from, { replace: true });
   }, [location, navigate, refetch]);
 
-  const toggleSideMenu = useCallback(() => {
-    setShowSideMenu(!isShowSideMenu);
-  }, [isShowSideMenu]);
-
   const logout = useCallback(async () => {
     setCurrentUser(null);
     await logoutHandle.mutateAsync();
@@ -69,8 +62,6 @@ export const AppStateContextProvider: React.FC<{
     isAuthenticated: currenUser != null,
     initError: error,
     authenticated,
-    isShowSideMenu,
-    toggleSideMenu,
     logout,
     release,
   };
