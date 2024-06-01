@@ -1,7 +1,7 @@
 import axios from "axios";
 import { vi } from "vitest";
 
-import { getCurrentUser } from "../getCurrentUser";
+import { getCurrentUser } from "./getCurrentUser";
 
 import { currentUser } from "@/__fixtures__/CurrentUser";
 

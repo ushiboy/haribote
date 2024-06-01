@@ -1,7 +1,7 @@
 import axios from "axios";
 import { vi } from "vitest";
 
-import { getArticles } from "../getArticles";
+import { getArticles } from "./getArticles";
 
 import { article1, articleRaw1 } from "@/__fixtures__/Articles";
 

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { vi } from "vitest";
 
-import { logout } from "../logout";
+import { logout } from "./logout";
 
 vi.mock("axios");
 const mocked = vi.mocked(axios.delete);

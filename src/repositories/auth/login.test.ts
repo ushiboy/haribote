@@ -1,7 +1,7 @@
 import axios from "axios";
 import { vi } from "vitest";
 
-import { login } from "../login";
+import { login } from "./login";
 
 vi.mock("axios");
 const mocked = vi.mocked(axios.post);

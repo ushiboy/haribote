@@ -2,7 +2,7 @@
 import { fireEvent, render, RenderResult } from "@testing-library/react";
 import { vi } from "vitest";
 
-import { ArticleList } from "..";
+import { ArticleList } from ".";
 
 import { article1, createItems } from "@/__fixtures__/Articles";
 import { Article } from "@/domains/models";
