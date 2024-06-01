@@ -1,4 +1,4 @@
-import { rest } from "msw";
+import { http } from "msw";
 
 import {
   ARTICLES_API,
@@ -11,8 +11,8 @@ import * as auth from "./auth";
 import * as article from "./article";
 
 export const handlers = [
-  rest.post(LOGIN_API, auth.login),
-  rest.get(CURRENT_USER_API, auth.getCurrentUser),
-  rest.delete(LOGOUT_API, auth.logout),
-  rest.get(ARTICLES_API, article.getArticles),
+  http.post(LOGIN_API, auth.login),
+  http.get(CURRENT_USER_API, auth.getCurrentUser),
+  http.delete(LOGOUT_API, auth.logout),
+  http.get(ARTICLES_API, article.getArticles),
 ];

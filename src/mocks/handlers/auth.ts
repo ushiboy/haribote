@@ -1,58 +1,58 @@
 import { currentUser, adminUser } from "@/__fixtures__/CurrentUser";
 import { CurrentUser } from "@/domains/models";
-import { randomFail, MockHandler } from "./helper";
+import {
+  MockHandler,
+  randomFail,
+  respondJsonWithSession,
+  responseError,
+} from "./helper";
+import { HttpResponse, delay } from "msw";
 
 const users = new Map<string, CurrentUser>();
 users.set(currentUser.email, currentUser);
 users.set(adminUser.email, adminUser);
 
-export const login: MockHandler = async (req, res, ctx) => {
-  const { email, password } = await req.json();
+export const login: MockHandler<{ email: string; password: string }> = async ({
+  request,
+}) => {
   if (randomFail(5)) {
-    return res(ctx.status(500));
+    return responseError.internalServerError();
   }
+
+  const { email, password } = await request.json();
   if (!users.has(email) || password !== "hoge123!") {
-    return res(ctx.status(401));
+    return responseError.unauthorized();
   }
-  return res(
-    ctx.delay(1000),
-    ctx.status(200),
-    ctx.cookie("SESSION", email, {
-      httpOnly: true,
-      expires: new Date(Date.now() + 30 * 60 * 60 * 1000),
-    })
-  );
+
+  await delay(1000);
+  return respondJsonWithSession({ session: email });
 };
 
-export const getCurrentUser: MockHandler = async (req, res, ctx) => {
-  const session = req.cookies["SESSION"];
-  if (!session) {
-    return res(ctx.status(401));
+export const getCurrentUser: MockHandler = async ({ cookies }) => {
+  const { SESSION } = cookies;
+  if (!SESSION) {
+    return responseError.unauthorized();
   }
+
   if (randomFail(5)) {
-    return res(ctx.status(500));
+    return responseError.internalServerError();
   }
-  return res(
-    ctx.delay(1000),
-    ctx.status(200),
-    ctx.json(users.get(session)),
-    ctx.cookie("SESSION", session, {
-      httpOnly: true,
-      expires: new Date(Date.now() + 30 * 60 * 60 * 1000),
-    })
-  );
+
+  await delay(1000);
+  return respondJsonWithSession({ body: users.get(SESSION), session: SESSION });
 };
 
-export const logout: MockHandler = async (req, res, ctx) => {
-  const session = req.cookies["SESSION"];
+export const logout: MockHandler = async () => {
   if (randomFail(5)) {
-    return res(ctx.status(500));
+    return responseError.internalServerError();
   }
-  return res(
-    ctx.status(200),
-    ctx.cookie("SESSION", session, {
-      httpOnly: true,
-      expires: new Date(Date.now() - 86400),
-    })
-  );
+
+  await delay(1000);
+  const expired = new Date(Date.now() - 86400000).toUTCString();
+  return new HttpResponse(null, {
+    status: 200,
+    headers: {
+      "Set-Cookie": `SESSION=; Expires=${expired}`,
+    },
+  });
 };
