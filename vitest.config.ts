@@ -19,6 +19,7 @@ export default defineConfig({
         "src/main.tsx",
         "src/mocks/**/*",
       ],
+      reporter: ["text", "json-summary", "json", "html"],
       reportOnFailure: true,
       clean: true,
       all: true,
