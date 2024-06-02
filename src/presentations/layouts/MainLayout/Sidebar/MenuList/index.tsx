@@ -4,17 +4,17 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router";
 
+import { useMainLayoutContext } from "../../context";
+
 import { ActionItem } from "./ActionItem";
 import { NavItem } from "./NavItem";
 import * as S from "./style";
-
-import { useAppState } from "@/presentations/AppStateContext";
 
 /**
  * サイドバーのリスト
  */
 const MenuList = () => {
-  const { logout } = useAppState();
+  const { logout } = useMainLayoutContext();
   const { pathname } = useLocation();
   const { t } = useTranslation();
   return (

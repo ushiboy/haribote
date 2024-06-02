@@ -15,7 +15,7 @@ export const useGetArticles = (
   >,
 ) => {
   const {
-    article: { getArticles }
+    article: { getArticles },
   } = useRepositoryComposition();
   return useQuery(ARTICLES_API, getArticles, option);
-}
+};

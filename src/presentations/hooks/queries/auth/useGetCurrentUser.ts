@@ -9,7 +9,7 @@ import { useRepositoryComposition } from "@/presentations/contexts";
  * ログインユーザー情報取得
  */
 export const useGetCurrentUser = (
-  option: Omit<
+  option?: Omit<
     UseQueryOptions<unknown, ApplicationException, CurrentUser>,
     "queryFn"
   >,

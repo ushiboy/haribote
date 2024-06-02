@@ -4,7 +4,6 @@ import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { HashRouter } from "react-router-dom";
 
-import { AppStateContextProvider } from "./AppStateContext";
 import { RepositoryCompositionContextProvider } from "./contexts";
 import { theme } from "./theme";
 
@@ -29,9 +28,7 @@ export const App: React.FC = () => {
         <ThemeProvider theme={theme(prefersDarkMode)}>
           <CssBaseline />
           <HashRouter>
-            <AppStateContextProvider>
-              <AppRoutes />
-            </AppStateContextProvider>
+            <AppRoutes />
           </HashRouter>
         </ThemeProvider>
       </RepositoryCompositionContextProvider>

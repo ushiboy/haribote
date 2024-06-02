@@ -1,16 +1,17 @@
 import React from "react";
 import { Route, Routes } from "react-router";
 
+import { useUserSession } from "../contexts/UserSessionContext";
 import { AboutPage, AdminPage, ArticlesPage, NotFoundPage } from "../pages";
 
-import { useAppState } from "@/presentations/AppStateContext";
 import { MainLayout, SubLayout } from "@/presentations/layouts";
 
 /**
  * 認証保護されたルーティング定義
  */
 export const ProtectedRoutes: React.FC = () => {
-  const { isAdmin } = useAppState();
+  const { currentUser } = useUserSession();
+  const { isAdmin } = currentUser;
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>

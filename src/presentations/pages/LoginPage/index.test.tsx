@@ -1,7 +1,7 @@
 import { render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { QueryClient } from "react-query";
-import { MemoryRouter } from "react-router";
+import { MemoryRouter, Route, Routes } from "react-router";
 
 import { LoginPage } from ".";
 
@@ -9,7 +9,6 @@ import { currentUser } from "@/__fixtures__/CurrentUser";
 import { WebApiWrap } from "@/__fixtures__/testHelper";
 import { NetworkException } from "@/domains/errors";
 import { i18n } from "@/i18n/config";
-import { AppStateContextProvider } from "@/presentations/AppStateContext";
 import { GetCurrentUser, Login } from "@/repositories";
 
 describe("LoginPage", () => {
@@ -34,8 +33,11 @@ describe("LoginPage", () => {
             },
           }}
         >
-          <MemoryRouter>
-            <AppStateContextProvider>{children}</AppStateContextProvider>
+          <MemoryRouter initialEntries={["/"]}>
+            <Routes>
+              <Route index element={children} />
+              <Route path="/articles" element={<div data-testid="fake" />} />
+            </Routes>
           </MemoryRouter>
         </WebApiWrap>
       ),
@@ -60,14 +62,18 @@ describe("LoginPage", () => {
     expect(r.getByText("パスワード")).toBeInTheDocument();
   });
 
-  test("ログインを実行できる", async () => {
-    const r = output(loginOk);
+  describe("ログイン成功した場合", () => {
+    test("記事一覧へ遷移する", async () => {
+      const r = output(loginOk);
 
-    const user = userEvent.setup();
+      const user = userEvent.setup();
 
-    await user.click(r.getByTestId("signInButton"));
+      await user.click(r.getByTestId("signInButton"));
 
-    await waitFor(() => client.isMutating());
+      await waitFor(() => client.isMutating());
+
+      await waitFor(() => expect(r.getByTestId("fake")).toBeInTheDocument());
+    });
   });
 
   describe("ログインでエラーが起きた場合", () => {
