@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router";
 
-import { LoginPage, RegisterPage, NotFoundPage } from "../pages";
+import { LoginPage, RegisterPage } from "../pages";
 
 import { Protect } from "./Protect";
 import { ProtectedRoutes } from "./ProtectedRoutes";
@@ -15,7 +15,6 @@ export const AppRoutes: React.FC = () => {
       <Route index element={<LoginPage />} />
       <Route path="/register/:code" element={<RegisterPage />} />
       <Route path="/*" element={<Protect element={<ProtectedRoutes />} />} />
-      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 };
