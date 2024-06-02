@@ -24,6 +24,7 @@ export const SelectSection: React.FC = () => {
     <S.SelectBox size="small">
       <InputLabel>Category</InputLabel>
       <Select
+        data-testid="selectCategory"
         value={category}
         onChange={handleChange}
         label="Category"
@@ -37,7 +38,7 @@ export const SelectSection: React.FC = () => {
           <em>None</em>
         </MenuItem>
         {categories.map((v) => (
-          <MenuItem key={v} value={v}>
+          <MenuItem key={v} value={v} data-testid={`menuItem-${v}`}>
             {v}
           </MenuItem>
         ))}

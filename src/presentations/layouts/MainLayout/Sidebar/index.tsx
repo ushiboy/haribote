@@ -4,7 +4,7 @@ import React from "react";
 import { drawerWidth } from "../../constant";
 import { useMainLayoutContext } from "../context";
 
-import MenuList from "./MenuList";
+import { MenuList } from "./MenuList";
 import * as S from "./style";
 
 import { HeaderLogo } from "@/presentations/sharedComponents/logos";

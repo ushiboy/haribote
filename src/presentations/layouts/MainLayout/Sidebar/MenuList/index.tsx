@@ -13,7 +13,7 @@ import * as S from "./style";
 /**
  * サイドバーのリスト
  */
-const MenuList = () => {
+export const MenuList = () => {
   const { logout } = useMainLayoutContext();
   const { pathname } = useLocation();
   const { t } = useTranslation();
@@ -37,9 +37,12 @@ const MenuList = () => {
         }
         title={t("About")}
       />
-      <ActionItem icon={<LogoutIcon />} title={t("SignOut")} onClick={logout} />
+      <ActionItem
+        dataTestId="logoutMenu"
+        icon={<LogoutIcon />}
+        title={t("SignOut")}
+        onClick={logout}
+      />
     </S.List>
   );
 };
-
-export default MenuList;
