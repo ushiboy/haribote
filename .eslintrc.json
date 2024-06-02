@@ -9,12 +9,14 @@
   "plugins": [
     "@typescript-eslint",
     "react",
+    "react-refresh",
     "import",
     "unused-imports"
   ],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
     "prettier"
   ],
   "rules": {

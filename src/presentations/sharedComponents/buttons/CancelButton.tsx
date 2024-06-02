@@ -11,7 +11,7 @@ export const CancelButton: React.FC<{
 }> = ({ disabled, onClick }) => {
   const { t } = useTranslation();
   return (
-    <Button disabled={disabled} onClick={onClick}>
+    <Button data-testid="cancelButton" disabled={disabled} onClick={onClick}>
       {t("Cancel")}
     </Button>
   );

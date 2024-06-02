@@ -1,8 +1,8 @@
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 
 import { ApplicationException, WebApiException } from "@/domains/errors";
-import { useAppState } from "@/presentations/AppStateContext";
 import { useLogin } from "@/presentations/hooks/queries";
 import { useErrorMessage } from "@/presentations/hooks/shared";
 
@@ -11,7 +11,7 @@ import { useErrorMessage } from "@/presentations/hooks/shared";
  */
 export const useLoginPage = () => {
   const { t } = useTranslation();
-  const appStateHandle = useAppState();
+  const navigate = useNavigate();
   const loginHandle = useLogin();
   const errorHandle = useErrorMessage();
 
@@ -24,12 +24,12 @@ export const useLoginPage = () => {
         },
         {
           onSuccess() {
-            appStateHandle.authenticated();
+            navigate("/articles");
           },
-        }
+        },
       );
     },
-    [loginHandle]
+    [loginHandle, navigate],
   );
 
   const toMessageFromError = useCallback(
@@ -39,7 +39,7 @@ export const useLoginPage = () => {
       }
       return errorHandle.toMessageFromError(error);
     },
-    [errorHandle, t]
+    [errorHandle, t],
   );
 
   return {

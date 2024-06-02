@@ -12,7 +12,12 @@ export const EditButton: React.FC<{
 }> = ({ disabled, onClick }) => {
   const { t } = useTranslation();
   return (
-    <Button disabled={disabled} startIcon={<Edit />} onClick={onClick}>
+    <Button
+      data-testid="editButton"
+      disabled={disabled}
+      startIcon={<Edit />}
+      onClick={onClick}
+    >
       {t("Edit")}
     </Button>
   );

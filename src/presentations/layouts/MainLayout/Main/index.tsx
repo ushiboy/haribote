@@ -1,14 +1,18 @@
 import React from "react";
 
-import * as S from "./style";
+import { useMainLayoutContext } from "../context";
 
-import { useAppState } from "@/presentations/AppStateContext";
+import * as S from "./style";
 
 /**
  * アプリケーションのメインコンテンツエリア
  */
 export const Main: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { isShowSideMenu } = useAppState();
+  const { isShowSideMenu } = useMainLayoutContext();
 
-  return <S.Content open={isShowSideMenu}>{children}</S.Content>;
+  return (
+    <S.Content open={isShowSideMenu} data-testid="mainLayoutMain">
+      {children}
+    </S.Content>
+  );
 };

@@ -23,7 +23,11 @@ export const ArticlesPage: React.FC = () => {
         onReloadClick={refetch}
         isLoading={isFetching}
       />
-      <AppErrorToast error={error} onClose={errorHandle.clearError} />
+      <AppErrorToast
+        dataTestId="articlesErrorToast"
+        error={error}
+        onClose={errorHandle.clearError}
+      />
     </>
   );
 };

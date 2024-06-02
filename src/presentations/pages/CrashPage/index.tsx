@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 export const CrashPage: React.FC = () => {
   const { t } = useTranslation();
   return (
-    <Container>
+    <Container data-testid="crashPage">
       <h1>{t("CrashError")}</h1>
     </Container>
   );

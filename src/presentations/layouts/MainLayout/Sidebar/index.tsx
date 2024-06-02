@@ -2,18 +2,18 @@ import { Box, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
 
 import { drawerWidth } from "../../constant";
+import { useMainLayoutContext } from "../context";
 
-import MenuList from "./MenuList";
+import { MenuList } from "./MenuList";
 import * as S from "./style";
 
-import { useAppState } from "@/presentations/AppStateContext";
 import { HeaderLogo } from "@/presentations/sharedComponents/logos";
 
 /**
  * サイドバー
  */
 export const SideBar: React.FC = () => {
-  const { isShowSideMenu, toggleSideMenu } = useAppState();
+  const { isShowSideMenu, toggleSideMenu } = useMainLayoutContext();
 
   const theme = useTheme();
 
@@ -27,8 +27,10 @@ export const SideBar: React.FC = () => {
         width: matchUpMd ? drawerWidth : "auto",
       }}
       aria-label="mailbox folders"
+      data-testid="mainLayoutSideBar"
     >
       <S.Drawer
+        data-testid="sideBarDrawer"
         variant={matchUpMd ? "persistent" : "temporary"}
         anchor="left"
         open={isShowSideMenu}

@@ -11,7 +11,11 @@ export const ReloadButton: React.FC<{ onClick: () => void }> = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <Button startIcon={<Refresh />} onClick={onClick}>
+    <Button
+      data-testid="reloadButton"
+      startIcon={<Refresh />}
+      onClick={onClick}
+    >
       {t("Reload")}
     </Button>
   );

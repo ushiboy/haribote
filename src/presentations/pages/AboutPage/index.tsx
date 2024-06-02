@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 export const AboutPage: React.FC = () => {
   const { t } = useTranslation();
   return (
-    <Container>
+    <Container data-testid="aboutPage">
       <h1>{t("About")}</h1>
       <p>{t("AboutThis")}</p>
     </Container>

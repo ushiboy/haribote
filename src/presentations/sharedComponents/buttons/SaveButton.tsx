@@ -13,6 +13,7 @@ export const SaveButton: React.FC<{
   const { t } = useTranslation();
   return (
     <Button
+      data-testid="saveButton"
       variant="contained"
       disabled={disabled}
       startIcon={<Save />}

@@ -1,15 +1,21 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import "@testing-library/jest-dom";
-import { fireEvent, render, RenderResult } from "@testing-library/react";
+import {
+  fireEvent,
+  render,
+  RenderResult,
+  waitFor,
+} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { vi } from "vitest";
 
-import { ArticleList } from "..";
+import { ArticleList } from ".";
 
 import { article1, createItems } from "@/__fixtures__/Articles";
 import { Article } from "@/domains/models";
 import { i18n } from "@/i18n/config";
 
 describe("ArticleList", () => {
-  const onReloadClick = jest.fn();
+  const onReloadClick = vi.fn();
 
   const out = (articles: Article[]) =>
     render(
@@ -17,7 +23,7 @@ describe("ArticleList", () => {
         articles={articles}
         isLoading={false}
         onReloadClick={onReloadClick}
-      />
+      />,
     );
 
   beforeEach(() => {
@@ -134,6 +140,34 @@ describe("ArticleList", () => {
             expect(v.container.querySelector('[name="next"]')).toBeDisabled();
           });
         });
+      });
+    });
+  });
+
+  describe("onReloadClick", () => {
+    test("再読込みボタンのクリックで実行される", async () => {
+      const r = out([article1]);
+      const user = userEvent.setup();
+
+      await user.click(r.getByTestId("reloadButton"));
+
+      expect(onReloadClick).toHaveBeenCalled();
+    });
+  });
+
+  describe("アクション", () => {
+    describe("行を選択して編集ボタンを押した場合", () => {
+      test("編集ダイアログを表示する", async () => {
+        const r = out([article1]);
+        const user = userEvent.setup();
+
+        await user.click(r.getByText(article1.title));
+
+        await user.click(r.getByTestId("editButton"));
+
+        await waitFor(() =>
+          expect(r.getByTestId("articleEditDialog")).toBeInTheDocument(),
+        );
       });
     });
   });

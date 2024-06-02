@@ -15,7 +15,7 @@ export const useArticles = (articles: Article[]) => {
     (page: number) => {
       setPage(page);
     },
-    [setPage]
+    [setPage],
   );
 
   const changeRowsPerPage = useCallback(
@@ -23,7 +23,7 @@ export const useArticles = (articles: Article[]) => {
       setRowsPerPage(rowsPerPage);
       setPage(0);
     },
-    [setPage, setRowsPerPage]
+    [setPage, setRowsPerPage],
   );
 
   const resetPage = useCallback(() => {
@@ -40,7 +40,7 @@ export const useArticles = (articles: Article[]) => {
         setSelected(new Set(selected));
       }
     },
-    [selected, setSelected]
+    [selected, setSelected],
   );
 
   const clearSelect = useCallback(() => setSelected(new Set()), [setSelected]);

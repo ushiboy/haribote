@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
 
-import { useErrorMessage } from "../useErrorMessage";
+import { useErrorMessage } from "./useErrorMessage";
 
 import {
   ApplicationException,

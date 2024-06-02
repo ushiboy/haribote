@@ -10,8 +10,9 @@ import { ErrorToast } from "@/presentations/sharedComponents/toasts";
 export const AppErrorToast: React.FC<{
   error: ApplicationException | null;
   duration?: number;
+  dataTestId?: string;
   onClose?: () => void;
-}> = ({ error, duration, onClose }) => {
+}> = ({ error, duration, dataTestId, onClose }) => {
   const { toMessageFromError } = useErrorMessage();
   if (!error) {
     return null;
@@ -21,6 +22,7 @@ export const AppErrorToast: React.FC<{
       show
       message={toMessageFromError(error)}
       duration={duration}
+      dataTestId={dataTestId || "appErrorToast"}
       onClose={onClose}
     />
   );

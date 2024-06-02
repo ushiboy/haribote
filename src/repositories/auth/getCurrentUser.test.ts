@@ -1,19 +1,19 @@
-import { jest } from "@jest/globals";
 import axios from "axios";
+import { vi } from "vitest";
 
-import { getCurrentUser } from "../getCurrentUser";
+import { getCurrentUser } from "./getCurrentUser";
 
 import { currentUser } from "@/__fixtures__/CurrentUser";
 
-type Mocked = jest.Mocked<typeof axios.get>;
-jest.mock("axios");
+vi.mock("axios");
+const mocked = vi.mocked(axios.get);
 
 describe("getCurrentUser", () => {
-  afterEach(() => jest.clearAllMocks());
+  afterEach(() => vi.clearAllMocks());
 
   describe("正常系", () => {
     beforeEach(() => {
-      (axios.get as Mocked).mockResolvedValue({
+      mocked.mockResolvedValue({
         status: 200,
         data: {
           ...currentUser,

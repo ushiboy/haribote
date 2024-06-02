@@ -3,10 +3,12 @@ import { Auth, postLogin } from "@/drivers/api/auth";
 
 export type LoginParam = Auth;
 
+export type Login = (param: LoginParam) => Promise<boolean>;
+
 /**
  * ログイン
  */
-export const login = async ({
+export const login: Login = async ({
   email,
   password,
 }: LoginParam): Promise<boolean> => {

@@ -10,7 +10,7 @@ import { App } from "./presentations/App";
     !import.meta.env.VITE_PROXY_TARGET
   ) {
     const { worker } = await import("./mocks/browser");
-    worker.start({
+    await worker.start({
       serviceWorker: {
         url: "/haribote/mockServiceWorker.js",
         options: {
@@ -23,6 +23,6 @@ import { App } from "./presentations/App";
   ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <React.StrictMode>
       <App />
-    </React.StrictMode>
+    </React.StrictMode>,
   );
 })();

@@ -6,9 +6,11 @@ import React from "react";
  */
 export const ErrorMessage: React.FC<{
   message: string;
-}> = ({ message }) => {
+  dataTestId?: string;
+}> = ({ message, dataTestId }) => {
   return (
     <Typography
+      data-testid={dataTestId || "errorMessage"}
       sx={{
         color: (theme) => theme.palette.error.main,
       }}

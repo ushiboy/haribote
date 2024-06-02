@@ -10,7 +10,7 @@ import * as S from "./style";
  */
 export const SubLayout: React.FC = () => {
   return (
-    <S.Root>
+    <S.Root data-testid="subLayout">
       <Header />
       <Main>
         <Outlet />

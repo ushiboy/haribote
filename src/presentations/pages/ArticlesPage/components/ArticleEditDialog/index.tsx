@@ -24,10 +24,12 @@ export const ArticleEditDialog: React.FC<{
   const { t } = useTranslation();
   const { title, setTitle } = useArticleEdit(article);
   return (
-    <Dialog open onClose={onClose}>
+    <Dialog data-testid="articleEditDialog" open onClose={onClose}>
       <DialogTitle>{t("EditArticle")}</DialogTitle>
       <S.DialogContent>
         <TextField
+          data-testid="articleTitleTextField"
+          inputProps={{ "data-testid": "articleTitleInput" }}
           autoFocus
           label={t("ArticleTitle")}
           type="text"

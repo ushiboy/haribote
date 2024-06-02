@@ -10,7 +10,7 @@ import * as S from "./style";
  */
 export const RegisterPage: React.FC = () => {
   return (
-    <Container component="main" maxWidth="xs">
+    <Container data-testid="registerPage" component="main" maxWidth="xs">
       <S.Root>
         <Typography component="h1" variant="h5">
           Register
@@ -30,7 +30,12 @@ export const RegisterPage: React.FC = () => {
             autoComplete="email"
             autoFocus
           />
-          <S.AcceptButton type="submit" fullWidth variant="contained">
+          <S.AcceptButton
+            type="submit"
+            fullWidth
+            variant="contained"
+            data-testid="submitButton"
+          >
             Register
           </S.AcceptButton>
         </S.Form>
