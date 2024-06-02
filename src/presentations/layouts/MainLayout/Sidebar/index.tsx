@@ -30,6 +30,7 @@ export const SideBar: React.FC = () => {
       data-testid="mainLayoutSideBar"
     >
       <S.Drawer
+        data-testid="sideBarDrawer"
         variant={matchUpMd ? "persistent" : "temporary"}
         anchor="left"
         open={isShowSideMenu}

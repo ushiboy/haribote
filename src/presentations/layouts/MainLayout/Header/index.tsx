@@ -32,6 +32,7 @@ export const Header: React.FC = () => {
           </S.Logo>
           <S.Button>
             <S.Toggle
+              data-testid="toggleMenuButton"
               variant="rounded"
               onClick={toggleSideMenu}
               color="inherit"

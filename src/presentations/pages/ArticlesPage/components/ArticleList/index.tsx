@@ -41,10 +41,7 @@ export const ArticleList: React.FC<{
             onReloadClick();
           }}
         />
-        <EditButton
-          disabled={selected.size !== 1}
-          onClick={() => handle.startEdit()}
-        />
+        <EditButton disabled={selected.size !== 1} onClick={handle.startEdit} />
       </S.Controll>
       <S.TableWrap>
         <S.TableContainer>
@@ -86,7 +83,7 @@ export const ArticleList: React.FC<{
       {handle.isEditing && (
         <ArticleEditDialog
           article={Array.from(selected)[0]}
-          onClose={() => handle.endEdit()}
+          onClose={handle.endEdit}
         />
       )}
     </Container>

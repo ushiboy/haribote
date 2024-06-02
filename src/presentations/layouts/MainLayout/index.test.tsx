@@ -1,4 +1,5 @@
-import { render } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { QueryClient } from "react-query";
 import { MemoryRouter } from "react-router";
 
@@ -27,5 +28,21 @@ describe("MainLayout", () => {
     expect(r.getByTestId("mainLayoutMain")).toBeInTheDocument();
     expect(r.getByTestId("mainLayoutHeader")).toBeInTheDocument();
     expect(r.getByTestId("mainLayoutSideBar")).toBeInTheDocument();
+  });
+
+  test("ヘッダーのメニューボタンでサイドメニューを開閉できる", async () => {
+    const user = userEvent.setup();
+
+    const r = output();
+    const toggle = r.getByTestId("toggleMenuButton");
+    const sideBarDrawer = r
+      .getByTestId("sideBarDrawer")
+      .querySelector(".MuiDrawer-paper");
+
+    expect(sideBarDrawer).toBeVisible();
+
+    await user.click(toggle);
+
+    await waitFor(() => expect(sideBarDrawer).not.toBeVisible());
   });
 });
