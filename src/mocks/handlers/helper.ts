@@ -14,10 +14,10 @@ export const randomFail = (rate: number): boolean =>
 
 export const responseError = {
   unauthorized() {
-    new HttpResponse(null, { status: 401 });
+    return new HttpResponse(null, { status: 401 });
   },
   internalServerError() {
-    new HttpResponse(null, { status: 500 });
+    return new HttpResponse(null, { status: 500 });
   },
 };
 
